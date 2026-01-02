@@ -33,7 +33,7 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
-    container_name: sse-db-${CUSTOMER_NAME}
+    container_name: ycerp-db-${CUSTOMER_NAME}
     environment:
       POSTGRES_DB: ${CUSTOMER_NAME}_odoo
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -52,8 +52,8 @@ services:
   web:
     build:
       context: ../../
-      dockerfile: Dockerfile
-    container_name: sse-web-${CUSTOMER_NAME}
+      dockerfile: Dockerfile.web
+    container_name: ycerp-web-${CUSTOMER_NAME}
     depends_on:
       db:
         condition: service_healthy
@@ -72,11 +72,8 @@ services:
       - ${CUSTOMER_NAME}-web:/var/lib/odoo
       - ../../odoo-19.0+e.20260101/odoo/addons:/usr/lib/python3/dist-packages/odoo/addons
       - ./config:/etc/odoo
-      - ../../init-odoo.sh:/init-odoo.sh
     command: >
-      sh -c "chmod +x /init-odoo.sh && 
-             /init-odoo.sh &&
-             odoo 
+      sh -c "odoo 
              --addons-path=/usr/lib/python3/dist-packages/odoo/addons
              --db_host=db
              --db_user=odoo
