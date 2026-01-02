@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15-alpine
+    image: postgres:15
     container_name: sse-db
     environment:
       POSTGRES_DB: postgres

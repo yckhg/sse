@@ -22,6 +22,11 @@ web-data/
 *.log
 logs/
 
+# 데이터베이스 백업 (중요: 민감 데이터 포함)
+db_backup_*.sql
+*.sql.gz
+backups/
+
 # Odoo 소스 (용량 크므로 제외)
 odoo-*.tar.gz
 odoo-*/
