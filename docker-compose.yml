@@ -4,8 +4,8 @@ services:
   db:
     build:
       context: .
-      dockerfile: Dockerfile.postgres
-    container_name: sse-db
+      dockerfile: Dockerfile.db
+    container_name: ycerp-db
     environment:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: odoo
@@ -24,8 +24,8 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: sse-web
+      dockerfile: Dockerfile.web
+    container_name: ycerp-web
     depends_on:
       db:
         condition: service_healthy
