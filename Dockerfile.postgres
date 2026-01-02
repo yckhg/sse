@@ -1,0 +1,10 @@
+FROM postgres:15
+
+# pgvector 설치
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-15-pgvector \
+    && rm -rf /var/lib/apt/lists/*
+
+USER postgres
