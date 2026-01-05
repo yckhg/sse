@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.db
+    container_name: ycerp-db-visualoft
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_USER: odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    networks:
+      - odoo-network
+
+  web:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.web
+    container_name: ycerp-web-visualoft
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8072:8069"
+      - "1072:8072"
+    environment:
+      # 데이터베이스 설정
+      DB_HOST: db
+      DB_USER: odoo
+      DB_PASSWORD: odoo
+      DB_PORT: 5432
+      DB_NAME: odoo
+      
+      # Odoo 자동 초기화 옵션
+      ODOO_AUTO_INIT: "true"
+      WITHOUT_DEMO: "all"
+      
+      # 로깅
+      LOG_LEVEL: info
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ../../odoo-19.0+e.20260101/odoo/addons:/usr/lib/python3/dist-packages/odoo/addons
+      - ./config:/etc/odoo
+    restart: always
+    networks:
+      - odoo-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8069/odoo"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:
+
+networks:
+  odoo-network:
+    driver: bridge
