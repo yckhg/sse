@@ -29,7 +29,9 @@ backups/
 
 # Odoo 소스 (용량 크므로 제외)
 odoo-*.tar.gz
+# odoo 폴더 제외하되, addons은 포함
 odoo-*/
+!odoo-*/odoo/addons/
 
 # Odoo 캐시 및 임시 파일
 __pycache__/
