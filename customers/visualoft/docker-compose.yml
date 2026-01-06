@@ -6,6 +6,8 @@ services:
       context: ../../
       dockerfile: Dockerfile.db
     container_name: ycerp-db-visualoft
+    ports:
+      - "30052:5432"
     environment:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: odoo
@@ -30,7 +32,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8072:8069"
+      - "30053:8069"
       - "1072:8072"
     environment:
       # 데이터베이스 설정
