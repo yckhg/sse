@@ -24,6 +24,7 @@ logs/
 
 # 데이터베이스 백업 (중요: 민감 데이터 포함)
 db_backup_*.sql
+full_db_backup.sql
 *.sql.gz
 backups/
 

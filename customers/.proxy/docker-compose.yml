@@ -1,0 +1,22 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: central-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "30033:30033"
+      - "30043:30043"
+      - "30053:30053"
+      - "30063:30063"
+      - "30073:30073"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./certs:/etc/letsencrypt
+    networks:
+      - odoo-network
+
+networks:
+  odoo-network:
+    external: true

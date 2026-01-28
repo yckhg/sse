@@ -6,8 +6,6 @@ services:
       context: ../../
       dockerfile: Dockerfile.db
     container_name: ycerp-db-mediapolytech
-    ports:
-      - "30042:5432"
     environment:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: odoo
@@ -31,16 +29,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    ports:
-      - "30043:8069"
-      - "1071:8072"
     environment:
-      # 데이터베이스 설정
-      DB_HOST: db
-      DB_USER: odoo
-      DB_PASSWORD: odoo
-      DB_PORT: 5432
-      DB_NAME: odoo
+      # 데이터베이스 설정 (odoo.conf 에서)
       
       # Odoo 자동 초기화 옵션
       ODOO_AUTO_INIT: "true"
@@ -67,4 +57,4 @@ volumes:
 
 networks:
   odoo-network:
-    driver: bridge
+    external: true
