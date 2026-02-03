@@ -1,11 +1,24 @@
 FROM odoo:19.0
 
+# 루트 권한으로 패키지 설치
+USER root
+
+# 시스템 패키지 매니저를 사용하여 google-auth 설치
+# -y: 확인 질문에 모두 yes
+# --no-install-recommends: 불필요한 권장 패키지 제외
+# rm -rf /var/lib/apt/lists/*: 설치 후 캐시 삭제로 이미지 용량 최적화
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-google-auth \
+    && rm -rf /var/lib/apt/lists/*
+
 # 엔터프라이즈 소스 복사
 COPY odoo-19.0+e.20260101/odoo /usr/lib/python3/dist-packages/odoo
 
 WORKDIR /
-
 EXPOSE 8069 8072
+
+# 설치 완료 후 보안을 위해 odoo 사용자로 전환
+USER odoo
 
 # Odoo 실행
 CMD ["odoo"]
