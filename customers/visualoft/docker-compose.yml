@@ -21,7 +21,7 @@ services:
       retries: 5
     restart: always
     networks:
-      - odoo-network
+      - yc-network
 
   web:
     build:
@@ -49,7 +49,7 @@ services:
       - ./config:/etc/odoo
     restart: always
     networks:
-      - odoo-network
+      - yc-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8069/odoo"]
       interval: 30s
@@ -61,5 +61,5 @@ volumes:
   odoo-web-data:
 
 networks:
-  odoo-network:
+  yc-network:
     external: true

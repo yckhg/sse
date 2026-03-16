@@ -1,1 +1,1 @@
-docker network create odoo-network
+docker network create yc-network
