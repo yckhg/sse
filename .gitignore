@@ -81,6 +81,7 @@ customers/*/.env
 *.temp
 *backup*/
 .backup/
+.data/
 
 # ==========================================
 # OS 파일
