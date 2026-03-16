@@ -1,26 +1,26 @@
-# Odoo 다중 테넌트 환경 설정 가이드
+# ERP 다중 테넌트 환경 설정 가이드
 
 ## 1. 현재 구조
 ```
 /home/hg/projects/sse/
 ├── docker-compose.yml          # 메인 서비스 정의
-├── Dockerfile                  # Odoo 이미지 빌드
-├── init-odoo.sh               # 초기화 스크립트
+├── Dockerfile                  # erp 이미지 빌드
+├── init-ycerp.sh               # 초기화 스크립트
 ├── config/
-│   └── odoo.conf             # Odoo 설정
-├── customers/                 # 고객별 설정 (추가될 예정)
+│   └── erp.conf                # erp 설정
+├── customers/                  # 고객별 설정 (추가될 예정)
 │   ├── customer1/
 │   │   ├── docker-compose.yml
 │   │   └── config.conf
 │   └── customer2/
 │       ├── docker-compose.yml
 │       └── config.conf
-└── odoo-19.0+e.20260101/      # 엔터프라이즈 소스
+├── ycerp-19.0+e.20260101/
 ```
 
 ## 2. 각 업체별 독립 실행 방법
 
-### 업체1 Odoo 인스턴스 추가
+### 업체1 YC ERP 인스턴스 추가
 ```bash
 # customers/customer1/docker-compose.yml 생성
 version: '3.8'
@@ -28,9 +28,9 @@ services:
   db-c1:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: customer1_odoo
+      POSTGRES_DB: customer1_ycerp
       POSTGRES_PASSWORD: ${CUSTOMER1_DB_PASSWORD:-pass123}
-      POSTGRES_USER: odoo
+      POSTGRES_USER: ycerp
     volumes:
       - customer1-db:/var/lib/postgresql/data
     networks:
@@ -46,22 +46,22 @@ services:
       - "8069:8069"
     environment:
       DB_HOST: db-c1
-      DB_USER: odoo
+      DB_USER: ycerp
       DB_PASSWORD: ${CUSTOMER1_DB_PASSWORD:-pass123}
-      DB_NAME: customer1_odoo
+      DB_NAME: customer1_ycerp
     networks:
       - customer1-network
     volumes:
-      - customer1-web:/var/lib/odoo
+      - customer1-web:/var/lib/ycerp
 ```
 
 ### 실행
 ```bash
 cd /home/hg/projects/sse
-docker-compose up -d  # 메인 Odoo (포트 8069)
+docker-compose up -d  # 메인 YC ERP (포트 8069)
 
 cd customers/customer1
-docker-compose up -d  # Customer1 Odoo (포트 8070 or 별도 포트)
+docker-compose up -d  # Customer1 YC ERP (포트 8070 or 별도 포트)
 ```
 
 ## 3. 자동 모듈 활성화 현황
