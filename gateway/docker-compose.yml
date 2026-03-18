@@ -1,7 +1,7 @@
 services:
-  https-proxy-nginx:
+  nginx:
     image: nginx:latest
-    container_name: central-nginx-https
+    container_name: gateway
     ports:
       - "80:80"
       - "443:443"

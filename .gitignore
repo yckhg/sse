@@ -73,8 +73,8 @@ pip-delete-this-directory.txt
 customers/*/.env
 
 # SSL 인증서 & 키
-customers/.proxy/certs/
-customers/.proxy/certs*.tar.gz
+gateway/certs/
+gateway/certs*.tar.gz
 *.key
 *.crt
 
