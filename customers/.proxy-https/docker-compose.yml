@@ -1,0 +1,19 @@
+services:
+  https-proxy-nginx:
+    image: nginx:latest
+    container_name: central-nginx-https
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./acme_challenge:/etc/nginx/acme:ro
+    networks:
+      - yc-network
+    restart: always
+
+networks:
+  yc-network:
+    external: true
+    name: yc-network
