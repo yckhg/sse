@@ -73,14 +73,10 @@ pip-delete-this-directory.txt
 customers/*/.env
 
 # SSL 인증서 & 키
-customers/.proxy/certs/
 customers/.proxy-https/certs/
 customers/.proxy-https/certs*.tar.gz
 *.key
 *.crt
-
-# 불필요한 파일
-customers/.proxy/powershell.exe
 
 # ==========================================
 # 백업 & 임시 파일
