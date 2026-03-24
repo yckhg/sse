@@ -75,7 +75,85 @@ EOF
 # ── Test stubs ──
 run_connectivity() {
     echo -e "\n${BOLD}=== a. 네트워크 연결성 검증 ===${NC}"
-    echo "  (not implemented)"
+
+    local status result
+
+    # Report section header
+    cat >> "$REPORT_FILE" <<'EOF'
+
+## a. 네트워크 연결성 검증
+
+| 항목 | 검증 방법 | 결과 | 상태 |
+|------|----------|------|------|
+EOF
+
+    # 1. HTTPS 접근
+    status=$(curl -sk -o /dev/null -w '%{http_code}' "https://${DOMAIN}/" 2>/dev/null || echo "000")
+    if [ "$status" = "200" ] || [ "$status" = "303" ]; then
+        result="PASS"
+        log_pass "HTTPS 접근 (HTTP $status)"
+    else
+        result="FAIL"
+        log_fail "HTTPS 접근 (HTTP $status)"
+    fi
+    echo "| HTTPS 접근 | curl -sk https://${DOMAIN} | HTTP $status | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 2. TLS 프로토콜
+    local tls_ver
+    tls_ver=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" 2>&1 | awk -F', ' '/^New,/{print $2; exit}')
+    [ -z "$tls_ver" ] && tls_ver="unknown"
+    if [ "$tls_ver" = "TLSv1.2" ] || [ "$tls_ver" = "TLSv1.3" ]; then
+        result="PASS"
+        log_pass "TLS 프로토콜 ($tls_ver)"
+    else
+        result="FAIL"
+        log_fail "TLS 프로토콜 ($tls_ver)"
+    fi
+    echo "| TLS 프로토콜 | openssl s_client Protocol | $tls_ver | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 3. SNI 라우팅
+    local sni_status
+    sni_status=$(curl -sk -o /dev/null -w '%{http_code}' --resolve "${DOMAIN}:443:127.0.0.1" "https://${DOMAIN}/" 2>/dev/null || echo "000")
+    if [ "$sni_status" != "000" ]; then
+        result="PASS"
+        log_pass "SNI 라우팅 (HTTP $sni_status)"
+    else
+        result="FAIL"
+        log_fail "SNI 라우팅 (HTTP $sni_status)"
+    fi
+    echo "| SNI 라우팅 | curl --resolve ${DOMAIN}:443:127.0.0.1 | HTTP $sni_status | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 4. WebSocket
+    local ws_status
+    ws_status=$(curl -sk -o /dev/null -w '%{http_code}' \
+        -H "Upgrade: websocket" \
+        -H "Connection: Upgrade" \
+        -H "Sec-WebSocket-Version: 13" \
+        -H "Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==" \
+        "https://${DOMAIN}/websocket" 2>/dev/null || echo "000")
+    if [ "$ws_status" = "101" ] || [ "$ws_status" = "200" ]; then
+        result="PASS"
+        log_pass "WebSocket (HTTP $ws_status)"
+    else
+        result="FAIL"
+        log_fail "WebSocket (HTTP $ws_status)"
+    fi
+    echo "| WebSocket | curl -H 'Upgrade: websocket' /websocket | HTTP $ws_status | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 5. Long-Polling
+    local lp_status
+    lp_status=$(curl -sk -o /dev/null -w '%{http_code}' -X POST \
+        -H "Content-Type: application/json" \
+        -d '{}' \
+        "https://${DOMAIN}/longpolling/poll" 2>/dev/null || echo "000")
+    if [ "$lp_status" = "200" ] || [ "$lp_status" = "400" ]; then
+        result="PASS"
+        log_pass "Long-Polling (HTTP $lp_status)"
+    else
+        result="FAIL"
+        log_fail "Long-Polling (HTTP $lp_status)"
+    fi
+    echo "| Long-Polling | curl -X POST /longpolling/poll | HTTP $lp_status | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
 }
 
 run_routing() {
