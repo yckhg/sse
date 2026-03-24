@@ -327,7 +327,80 @@ EOF
 
 run_performance() {
     echo -e "\n${BOLD}=== d. 성능 검증 ===${NC}"
-    echo "  (not implemented)"
+
+    local result
+
+    # Report section header
+    cat >> "$REPORT_FILE" <<'EOF'
+
+## d. 성능 검증
+
+| 항목 | 측정값 | 기준 | 결론 |
+|------|--------|------|------|
+EOF
+
+    # 1. Nginx 메모리 — docker stats로 측정 (MiB)
+    local mem_usage mem_mb
+    mem_usage=$(docker stats "$GATEWAY_CONTAINER" --no-stream --format '{{.MemUsage}}' 2>/dev/null || echo "")
+    mem_mb=$(echo "$mem_usage" | grep -oP '[\d.]+' | head -1 || echo "0")
+    [ -z "$mem_mb" ] && mem_mb="0"
+    local mem_ok
+    mem_ok=$(awk "BEGIN{print ($mem_mb > 0 && $mem_mb <= 100) ? 1 : 0}")
+    if [ "$mem_ok" = "1" ]; then
+        result="PASS"
+        log_pass "Nginx 메모리 (${mem_mb}MiB ≤ 100MB)"
+    elif [ "$mem_mb" = "0" ]; then
+        result="FAIL"
+        log_fail "Nginx 메모리 (측정 실패)"
+    else
+        result="FAIL"
+        log_fail "Nginx 메모리 (${mem_mb}MiB > 100MB)"
+    fi
+    echo "| Nginx 메모리 | ${mem_mb}MiB | ≤ 100MB | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 2. 응답 시간 — curl time_total
+    local time_total
+    time_total=$(curl -sk -o /dev/null -w '%{time_total}' "https://${DOMAIN}/" 2>/dev/null || echo "99.0")
+    local time_ok
+    time_ok=$(awk "BEGIN{print ($time_total <= 2.0) ? 1 : 0}")
+    if [ "$time_ok" = "1" ]; then
+        result="PASS"
+        log_pass "응답 시간 (${time_total}s ≤ 2.0s)"
+    else
+        result="FAIL"
+        log_fail "응답 시간 (${time_total}s > 2.0s)"
+    fi
+    echo "| 응답 시간 | ${time_total}s | ≤ 2.0s | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 3. 10회 연속 성공률
+    local success_count=0 i http_code
+    for i in $(seq 1 10); do
+        http_code=$(curl -sk -o /dev/null -w '%{http_code}' "https://${DOMAIN}/" 2>/dev/null || echo "000")
+        if [ "$http_code" = "200" ] || [ "$http_code" = "303" ]; then
+            success_count=$((success_count + 1))
+        fi
+    done
+    if [ "$success_count" -ge 9 ]; then
+        result="PASS"
+        log_pass "연속 성공률 (${success_count}/10)"
+    else
+        result="FAIL"
+        log_fail "연속 성공률 (${success_count}/10)"
+    fi
+    echo "| 10회 연속 성공률 | ${success_count}/10 | ≥ 9/10 | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 4. worker_connections — nginx config에서 추출
+    local worker_conn
+    worker_conn=$(docker exec "$GATEWAY_CONTAINER" nginx -T 2>/dev/null | grep -oP 'worker_connections\s+\K[0-9]+' | head -1 || echo "0")
+    [ -z "$worker_conn" ] && worker_conn="0"
+    if [ "$worker_conn" -ge 1000 ]; then
+        result="PASS"
+        log_pass "worker_connections (${worker_conn} ≥ 1000)"
+    else
+        result="FAIL"
+        log_fail "worker_connections (${worker_conn} < 1000)"
+    fi
+    echo "| worker_connections | ${worker_conn} | ≥ 1000 | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
 }
 
 # ── Main ──
