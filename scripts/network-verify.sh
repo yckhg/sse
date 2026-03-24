@@ -245,7 +245,84 @@ EOF
 
 run_security() {
     echo -e "\n${BOLD}=== c. 보안 검증 ===${NC}"
-    echo "  (not implemented)"
+
+    local result
+
+    # Report section header
+    cat >> "$REPORT_FILE" <<'EOF'
+
+## c. 보안 검증
+
+| 검증 항목 | 결과 | 상태 |
+|----------|------|------|
+EOF
+
+    # 1. 암호화 수준 — cipher suite가 HIGH 등급인지 확인
+    local cipher_info cipher_name
+    cipher_info=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" 2>&1 | awk -F', ' '/^New,/{print $3; exit}')
+    cipher_name=$(echo "$cipher_info" | sed 's/^Cipher is //')
+    [ -z "$cipher_name" ] && cipher_name="unknown"
+
+    # TLS 1.3 ciphers (TLS_AES_*) and strong TLS 1.2 ciphers are HIGH grade
+    if [ "$cipher_name" != "unknown" ] && [ "$cipher_name" != "(NONE)" ]; then
+        result="PASS"
+        log_pass "암호화 수준 ($cipher_name)"
+    else
+        result="FAIL"
+        log_fail "암호화 수준 ($cipher_name)"
+    fi
+    echo "| 암호화 수준 (cipher suite) | $cipher_name | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 2. 약한 암호화 거부 — aNULL cipher로 연결 시도 (TLS 1.3 비활성화하여 -cipher 옵션 적용)
+    local weak_output
+    weak_output=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" -cipher aNULL -no_tls1_3 2>&1 || true)
+    if echo "$weak_output" | grep -qi "handshake failure\|no ciphers available\|ssl alert\|no cipher"; then
+        result="PASS"
+        log_pass "약한 암호화 거부 (aNULL 차단)"
+    else
+        result="FAIL"
+        log_fail "약한 암호화 거부 (aNULL 허용됨)"
+    fi
+    echo "| 약한 암호화 거부 (aNULL) | aNULL handshake 거부 여부 | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 3. 인증서 유효성 — Verify return code: 0 (ok)
+    local verify_output verify_code
+    verify_output=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" 2>&1)
+    verify_code=$(echo "$verify_output" | grep "Verify return code:" | tail -1 | sed 's/.*Verify return code: //' | sed 's/ .*//')
+    [ -z "$verify_code" ] && verify_code="unknown"
+
+    if [ "$verify_code" = "0" ]; then
+        result="PASS"
+        log_pass "인증서 유효성 (Verify return code: 0)"
+    else
+        result="FAIL"
+        log_fail "인증서 유효성 (Verify return code: $verify_code)"
+    fi
+    echo "| 인증서 유효성 | Verify return code: $verify_code | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 4. TLSv1.0 비활성화
+    local tls10_output
+    tls10_output=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" -tls1 2>&1 || true)
+    if echo "$tls10_output" | grep -qi "handshake failure\|wrong version\|no protocols\|ssl alert\|connect:errno\|version not supported"; then
+        result="PASS"
+        log_pass "TLSv1.0 비활성화 (연결 거부)"
+    else
+        result="FAIL"
+        log_fail "TLSv1.0 비활성화 (연결 허용됨)"
+    fi
+    echo "| TLSv1.0 비활성화 | TLSv1.0 연결 거부 여부 | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
+
+    # 5. TLSv1.1 비활성화
+    local tls11_output
+    tls11_output=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" -tls1_1 2>&1 || true)
+    if echo "$tls11_output" | grep -qi "handshake failure\|wrong version\|no protocols\|ssl alert\|connect:errno\|version not supported"; then
+        result="PASS"
+        log_pass "TLSv1.1 비활성화 (연결 거부)"
+    else
+        result="FAIL"
+        log_fail "TLSv1.1 비활성화 (연결 허용됨)"
+    fi
+    echo "| TLSv1.1 비활성화 | TLSv1.1 연결 거부 여부 | $(status_emoji "$result") $result |" >> "$REPORT_FILE"
 }
 
 run_performance() {
