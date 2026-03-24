@@ -414,10 +414,33 @@ run_routing
 run_security
 run_performance
 
-# ── Summary ──
+# ── Update report header with actual results ──
+sed -i "s/(검증 완료 후 업데이트)/${PASSED}\/${TOTAL} PASS/" "$REPORT_FILE"
+
+# ── Append report summary footer ──
+cat >> "$REPORT_FILE" <<EOF
+
+---
+
+## 전체 요약
+
+| 구분 | 수 |
+|------|-----|
+| 총 항목 수 | ${TOTAL} |
+| PASS | ${PASSED} |
+| FAIL | ${FAILED} |
+
+> **결과: ${PASSED}/${TOTAL} PASS** $([ "$FAILED" -eq 0 ] && echo "— 전체 통과 ✅" || echo "— ${FAILED}건 실패 ❌")
+EOF
+
+# ── Terminal summary ──
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "${BOLD}전체 결과: ${PASSED}/${TOTAL} PASS${NC}"
+if [ "$FAILED" -eq 0 ]; then
+    echo -e "${GREEN}${BOLD}전체 결과: ${PASSED}/${TOTAL} PASS — 전체 통과${NC}"
+else
+    echo -e "${RED}${BOLD}전체 결과: ${PASSED}/${TOTAL} PASS — ${FAILED}건 실패${NC}"
+fi
 echo "리포트: $REPORT_FILE"
 
 # Exit code
