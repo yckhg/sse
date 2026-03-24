@@ -158,7 +158,89 @@ EOF
 
 run_routing() {
     echo -e "\n${BOLD}=== b. 도메인별 라우팅 검증 ===${NC}"
-    echo "  (not implemented)"
+
+    local status result
+
+    # Report section header
+    cat >> "$REPORT_FILE" <<'EOF'
+
+## b. 도메인별 라우팅 검증
+
+| 도메인 | HTTPS 접근 | SSL 인증서 | 라우팅 정확도 | 채팅 기능 |
+|--------|-----------|-----------|-------------|----------|
+EOF
+
+    # 1. HTTPS 접근 상태코드
+    local https_status https_result
+    https_status=$(curl -sk -o /dev/null -w '%{http_code}' "https://${DOMAIN}/" 2>/dev/null || echo "000")
+    if [ "$https_status" = "200" ] || [ "$https_status" = "303" ]; then
+        https_result="PASS"
+        log_pass "HTTPS 접근 (HTTP $https_status)"
+    else
+        https_result="FAIL"
+        log_fail "HTTPS 접근 (HTTP $https_status)"
+    fi
+
+    # 2. SSL 인증서 확인
+    local ssl_output ssl_subject ssl_expiry ssl_result ssl_detail
+    ssl_output=$(echo "Q" | timeout 5 openssl s_client -connect "${DOMAIN}:443" -servername "${DOMAIN}" 2>&1)
+
+    ssl_subject=$(echo "$ssl_output" | openssl x509 -noout -subject 2>/dev/null | sed 's/subject=//')
+    ssl_expiry=$(echo "$ssl_output" | openssl x509 -noout -enddate 2>/dev/null | sed 's/notAfter=//')
+
+    if [ -n "$ssl_expiry" ]; then
+        # Check if cert is still valid (not expired)
+        local expiry_epoch now_epoch
+        expiry_epoch=$(date -d "$ssl_expiry" +%s 2>/dev/null || echo "0")
+        now_epoch=$(date +%s)
+        if [ "$expiry_epoch" -gt "$now_epoch" ]; then
+            ssl_result="PASS"
+            ssl_detail="만료일: ${ssl_expiry}"
+            log_pass "SSL 인증서 (${ssl_detail})"
+        else
+            ssl_result="FAIL"
+            ssl_detail="만료됨: ${ssl_expiry}"
+            log_fail "SSL 인증서 (${ssl_detail})"
+        fi
+    else
+        ssl_result="FAIL"
+        ssl_detail="인증서 파싱 실패"
+        log_fail "SSL 인증서 ($ssl_detail)"
+    fi
+
+    # 3. 라우팅 정확도 — Odoo 서버 특성 헤더 확인
+    local headers routing_result routing_detail
+    headers=$(curl -sk -D - -o /dev/null "https://${DOMAIN}/" 2>/dev/null)
+
+    # Check for Odoo-specific indicators: Set-Cookie with session_id, X-Frame-Options, etc.
+    if echo "$headers" | grep -qi "session_id\|X-Frame-Options\|odoo"; then
+        routing_result="PASS"
+        routing_detail="Odoo 특성 헤더 감지"
+        log_pass "라우팅 정확도 ($routing_detail)"
+    else
+        routing_result="FAIL"
+        routing_detail="Odoo 특성 헤더 미감지"
+        log_fail "라우팅 정확도 ($routing_detail)"
+    fi
+
+    # 4. WebSocket 채팅 — proper WebSocket handshake
+    local ws_chat_status ws_chat_result
+    ws_chat_status=$(curl -sk -o /dev/null -w '%{http_code}' \
+        -H "Upgrade: websocket" \
+        -H "Connection: Upgrade" \
+        -H "Sec-WebSocket-Version: 13" \
+        -H "Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==" \
+        "https://${DOMAIN}/websocket" 2>/dev/null || echo "000")
+    if [ "$ws_chat_status" = "101" ]; then
+        ws_chat_result="PASS"
+        log_pass "WebSocket 채팅 (HTTP $ws_chat_status)"
+    else
+        ws_chat_result="FAIL"
+        log_fail "WebSocket 채팅 (HTTP $ws_chat_status)"
+    fi
+
+    # Write report row
+    echo "| ${DOMAIN} | $(status_emoji "$https_result") HTTP ${https_status} | $(status_emoji "$ssl_result") ${ssl_detail} | $(status_emoji "$routing_result") ${routing_detail} | $(status_emoji "$ws_chat_result") HTTP ${ws_chat_status} |" >> "$REPORT_FILE"
 }
 
 run_security() {
