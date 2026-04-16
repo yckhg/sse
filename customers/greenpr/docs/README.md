@@ -172,6 +172,45 @@ ODOO_URL=http://localhost:30033 python3 customers/greenpr/scripts/verify_flow.py
 
 ---
 
+## 5a. Website `/contactus` 폼 자동화 스모크 테스트 (US-006)
+
+`greenpr_form_automation` 모듈이 설치된 상태에서 **실제 `/contactus` 폼 POST →
+`crm.lead` 생성 → `base.automation` 트리거 → `mail.template` 렌더 → `mail.mail`
+대기열 적재** 의 전체 체인을 한 번에 검증하는 E2E 스모크 테스트.
+
+```bash
+cd /home/yc/projects/sse
+
+# 기본 실행 (호스트 게이트웨이 경유, 자동 cleanup)
+ODOO_URL=http://localhost:30033 \
+    python3 customers/greenpr/scripts/smoke_test_form_automation.py
+
+# 생성한 레코드를 남겨두고 수동 확인하고 싶을 때
+ODOO_URL=http://localhost:30033 \
+    python3 customers/greenpr/scripts/smoke_test_form_automation.py --no-cleanup
+```
+
+동작:
+
+1. `SMOKE-<epoch_ms>` 마커를 생성.
+2. `POST /website/form/crm.lead` 를 stdlib `urllib` 로 호출. payload 의
+   `name`/`description` 에 마커를 심는다.
+3. 최대 `--wait-seconds` (기본 10s) 동안 폴링하여:
+   - `crm.lead` 생성 및 `medium_id.name == 'Website'` 여부
+   - 해당 lead 에 연결된 `mail.mail` 중 `body_html` 에 "견적 문의" 리터럴을
+     포함하는 레코드의 `state ∈ {'sent','outgoing'}` 여부
+   확인.
+4. 생성한 `mail.mail` + `crm.lead` 를 마커로 재검색 후 자동 삭제
+   (`mail.message` 는 Odoo 보안 룰로 admin 도 지울 수 없어 WARN 후 skip —
+   해당 메시지는 삭제된 lead 의 고아 row 로 남지만 UI 에서는 보이지 않음).
+
+exit code: `0` = 전 체인 통과, `1` = 어떤 단계든 실패.
+
+스모크 테스트는 idempotent 하며 실행 시작 시 `SMOKE-*` 마커가 붙은 과거 잔재물을
+자동 purge 한다 (`--no-purge-stale` 로 해제 가능).
+
+---
+
 ## 6. 다른 테넌트 적용 가이드
 
 본 자동화를 `mediapolytech / visualoft / jnj_i / freeworks` 등 다른 테넌트에 적용할 때
