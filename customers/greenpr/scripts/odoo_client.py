@@ -142,8 +142,24 @@ class OdooClient:
         return self.execute_kw(model, "read", [list(ids)], kw)
 
     def create(self, model: str, values: dict[str, Any] | list[dict[str, Any]]) -> Any:
-        payload = values if isinstance(values, list) else [values]
-        return self.execute_kw(model, "create", [payload])
+        """Create one or more records.
+
+        - Single dict input → returns scalar id (int).
+        - List-of-dicts input → returns list[int] (length == len(input)).
+
+        Odoo 19 XML-RPC 의 `create` 는 항상 list 를 돌려주므로 입력이 단일 dict 일
+        때는 호출 측 편의를 위해 여기서 unwrap 한다.
+        """
+        single = isinstance(values, dict)
+        payload = [values] if single else list(values)
+        result = self.execute_kw(model, "create", [payload])
+        if single and isinstance(result, list):
+            if len(result) != 1:
+                raise RuntimeError(
+                    f"create returned {len(result)} ids for single-dict input: {result!r}"
+                )
+            return result[0]
+        return result
 
     def write(
         self,
