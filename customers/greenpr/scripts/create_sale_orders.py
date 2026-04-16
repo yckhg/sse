@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import html
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -112,6 +113,9 @@ def build_date_order(planned_date: str, flow_idx: int) -> str:
     return f"{d.isoformat()} 09:30:00"
 
 
+_TS_RE = re.compile(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$")
+
+
 def backfill_date_order(db_container: str, so_to_ts: dict[int, str]) -> None:
     """방금 create+confirm 한 sale.order 만 대상으로 `date_order` / `create_date` SQL UPDATE.
 
@@ -119,25 +123,34 @@ def backfill_date_order(db_container: str, so_to_ts: dict[int, str]) -> None:
     create_date 와 같거나 1~2일 후").
 
     so_to_ts: {so_id: 'YYYY-MM-DD HH:MM:SS' UTC}
+
+    안전성: SQL literal 문자열 보간 대신 COPY FROM STDIN + TEMP 테이블로
+    데이터를 SQL과 분리한다. id/ts 값은 엄격히 검증한다.
     """
     if not so_to_ts:
         return
-    when_clauses = " ".join(
-        f"WHEN {sid} THEN TIMESTAMP '{ts}'" for sid, ts in so_to_ts.items()
-    )
-    ids_csv = ",".join(str(sid) for sid in so_to_ts)
-    sql = (
-        "UPDATE sale_order SET "
-        f"date_order  = CASE id {when_clauses} END, "
-        f"create_date = CASE id {when_clauses} END, "
-        f"write_date  = CASE id {when_clauses} END "
-        f"WHERE id IN ({ids_csv})"
+    data_lines: list[str] = []
+    for sid, ts in so_to_ts.items():
+        if not isinstance(sid, int):
+            raise ValueError(f"sale.order id must be int, got {sid!r}")
+        if not _TS_RE.match(ts):
+            raise ValueError(f"invalid timestamp literal: {ts!r}")
+        data_lines.append(f"{sid}\t{ts}")
+    sql_script = (
+        "BEGIN;\n"
+        "CREATE TEMP TABLE _backfill_ts (id bigint PRIMARY KEY, ts timestamp NOT NULL) ON COMMIT DROP;\n"
+        "COPY _backfill_ts (id, ts) FROM STDIN;\n"
+        + "\n".join(data_lines) + "\n"
+        "\\.\n"
+        "UPDATE sale_order s SET date_order = b.ts, create_date = b.ts, write_date = b.ts\n"
+        "FROM _backfill_ts b WHERE s.id = b.id;\n"
+        "COMMIT;\n"
     )
     cmd = [
         "docker", "exec", "-i", db_container,
-        "psql", "-U", "odoo", "-d", "odoo", "-v", "ON_ERROR_STOP=1", "-c", sql,
+        "psql", "-U", "odoo", "-d", "odoo", "-v", "ON_ERROR_STOP=1",
     ]
-    subprocess.run(cmd, check=True)
+    subprocess.run(cmd, input=sql_script, check=True, text=True)
 
 
 def build_so_vals(
