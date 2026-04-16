@@ -13,9 +13,10 @@
     'category': 'Sales/CRM',
     'version': '19.0.1.0.0',
     'license': 'LGPL-3',
-    'depends': ['crm', 'mail', 'website_crm'],
+    'depends': ['crm', 'mail', 'website_crm', 'base_automation'],
     'data': [
         'data/mail_template.xml',
+        'data/automation.xml',
     ],
     'installable': True,
     'application': False,
