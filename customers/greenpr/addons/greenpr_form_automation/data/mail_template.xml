@@ -34,7 +34,7 @@
             </tr>
             <tr style="background-color:#f4f4f4;">
                 <td style="border:1px solid #dddddd; font-weight:bold;">전화번호</td>
-                <td style="border:1px solid #dddddd;"><t t-out="object.phone or object.mobile or ''"/></td>
+                <td style="border:1px solid #dddddd;"><t t-out="object.phone or ''"/></td>
             </tr>
             <tr>
                 <td style="border:1px solid #dddddd; font-weight:bold;">직책</td>
