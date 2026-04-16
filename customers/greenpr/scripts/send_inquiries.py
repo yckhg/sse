@@ -24,6 +24,7 @@ import html
 import json
 import os
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -37,6 +38,26 @@ MAIL_SERVER_ID = 4
 TENANT_KEY = "greenpr"
 MARKER_PREFIX = "ralph-demo-flow id="
 SEED = 20260416
+
+
+_CONTAINER_NAME_RE = re.compile(r"^[a-zA-Z0-9_-]+$")
+
+
+def container_name_arg(value: str) -> str:
+    """argparse ``type=`` validator for docker container names.
+
+    Enforces a strict allowlist so shell metacharacters (``;``, ``&&``,
+    spaces, quotes, ``$``, etc.) can never reach ``docker exec`` even if
+    the CLI arg is later wired to untrusted input. argparse converts the
+    raised ``ArgumentTypeError`` into an ``rc=2`` exit before any
+    subprocess runs.
+    """
+    if not _CONTAINER_NAME_RE.match(value):
+        raise argparse.ArgumentTypeError(
+            f"invalid docker container name: {value!r}; "
+            "must match ^[a-zA-Z0-9_-]+$"
+        )
+    return value
 
 
 QUANTITY_POOL = [
@@ -136,7 +157,8 @@ def build_body_html(
 
 
 def already_exists(cli: OdooClient, marker_val: str) -> list[int]:
-    needle = f"{MARKER_PREFIX}{marker_val}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    needle = f"{MARKER_PREFIX}{marker_val} -->"
     return cli.search("mail.mail", [["body_html", "like", needle]])
 
 
