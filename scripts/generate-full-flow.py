@@ -31,6 +31,7 @@ import datetime as dt
 import os
 import subprocess
 import sys
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -170,6 +171,9 @@ def run_stage(
     print(f"$ ODOO_URL={cfg.odoo_url} " + " ".join(cmd))
     t0 = time.time()
     # 스테이지 출력이 그대로 콘솔에 흘러나오도록 capture + mirror.
+    # stdout/stderr 를 각각 별도 스레드로 스트리밍 소비 — 한쪽 PIPE 버퍼(~64KB)가 포화되어
+    # 자식이 write 에서 블록되는 상황을 피한다. (예전엔 stdout 만 drain 하고 wait 후 stderr
+    # 를 read 했기 때문에 stderr 대량 로그 시 데드락 가능성이 있었음.)
     proc = subprocess.Popen(
         cmd,
         cwd=str(cfg.project_root),
@@ -179,18 +183,29 @@ def run_stage(
         text=True,
         bufsize=1,
     )
+    assert proc.stdout is not None and proc.stderr is not None
+
     stdout_lines: list[str] = []
     stderr_lines: list[str] = []
-    # 단순 순차 drain — 스테이지는 초 단위 실행이라 충분.
-    assert proc.stdout is not None and proc.stderr is not None
-    for line in proc.stdout:
-        sys.stdout.write(line)
-        stdout_lines.append(line)
+
+    def _pump(src, mirror, buf: list[str]) -> None:
+        for line in src:
+            mirror.write(line)
+            mirror.flush()
+            buf.append(line)
+        src.close()
+
+    t_out = threading.Thread(
+        target=_pump, args=(proc.stdout, sys.stdout, stdout_lines), daemon=True
+    )
+    t_err = threading.Thread(
+        target=_pump, args=(proc.stderr, sys.stderr, stderr_lines), daemon=True
+    )
+    t_out.start()
+    t_err.start()
     proc.wait()
-    if proc.stderr is not None:
-        stderr_lines = proc.stderr.read().splitlines(keepends=True)
-        for line in stderr_lines:
-            sys.stderr.write(line)
+    t_out.join()
+    t_err.join()
 
     duration = time.time() - t0
     stdout_full = "".join(stdout_lines)
