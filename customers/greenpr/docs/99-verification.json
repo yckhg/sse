@@ -1,0 +1,2764 @@
+{
+  "summary": {
+    "total_flows": 22,
+    "fully_linked": 22,
+    "passed_flows": 22,
+    "total_checks": 264,
+    "passed_checks": 264,
+    "failed_checks": 0
+  },
+  "rows": [
+    {
+      "partner_id": 492,
+      "partner_name": "피알원",
+      "planned_date": "2026-04-02",
+      "expected_qty": 20,
+      "expected_product_id": 256,
+      "mail_id": 384,
+      "mail_state": "sent",
+      "mail_res_id": 492,
+      "lead_id": 87,
+      "lead_partner_id": 492,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 24000.0,
+      "lead_create_date": "2026-04-02 09:00:00",
+      "lead_date_open": "2026-04-02 09:00:00",
+      "so_id": 105,
+      "so_name": "S00105",
+      "so_partner_id": 492,
+      "so_state": "sale",
+      "so_opportunity_id": 87,
+      "so_amount_total": 24000.0,
+      "so_amount_untaxed": 24000.0,
+      "so_date_order": "2026-04-02 09:30:00",
+      "so_create_date": "2026-04-02 09:30:00",
+      "so_invoice_ids": [
+        99
+      ],
+      "so_lines": [
+        {
+          "product_id": 256,
+          "qty": 20.0,
+          "price_unit": 1200.0
+        }
+      ],
+      "inv_id": 99,
+      "inv_name": "INV/2026/00046",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 24000.0,
+      "inv_amount_untaxed": 24000.0,
+      "inv_partner_id": 492,
+      "inv_date": "2026-04-03",
+      "inv_origin": "S00105",
+      "inv_line_ids": [
+        242
+      ],
+      "po_id": 35,
+      "po_name": "P00035",
+      "po_state": "purchase",
+      "po_partner_id": 486,
+      "po_amount_total": 16537.0,
+      "po_amount_untaxed": 16537.0,
+      "po_date_order": "2026-04-03 09:30:00",
+      "po_origin": "S00105",
+      "po_lines": [
+        {
+          "product_id": 256,
+          "qty": 20.0,
+          "price_unit": 826.85
+        }
+      ]
+    },
+    {
+      "partner_id": 492,
+      "partner_name": "피알원",
+      "planned_date": "2026-04-14",
+      "expected_qty": 50,
+      "expected_product_id": 197,
+      "mail_id": 385,
+      "mail_state": "sent",
+      "mail_res_id": 492,
+      "lead_id": 88,
+      "lead_partner_id": 492,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 132000.0,
+      "lead_create_date": "2026-04-14 09:00:00",
+      "lead_date_open": "2026-04-14 09:00:00",
+      "so_id": 106,
+      "so_name": "S00106",
+      "so_partner_id": 492,
+      "so_state": "sale",
+      "so_opportunity_id": 88,
+      "so_amount_total": 132000.0,
+      "so_amount_untaxed": 120000.0,
+      "so_date_order": "2026-04-15 09:30:00",
+      "so_create_date": "2026-04-15 09:30:00",
+      "so_invoice_ids": [
+        100
+      ],
+      "so_lines": [
+        {
+          "product_id": 197,
+          "qty": 50.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 100,
+      "inv_name": "INV/2026/00047",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 132000.0,
+      "inv_amount_untaxed": 120000.0,
+      "inv_partner_id": 492,
+      "inv_date": "2026-04-16",
+      "inv_origin": "S00106",
+      "inv_line_ids": [
+        244
+      ],
+      "po_id": 36,
+      "po_name": "P00036",
+      "po_state": "purchase",
+      "po_partner_id": 601,
+      "po_amount_total": 83035.0,
+      "po_amount_untaxed": 75486.0,
+      "po_date_order": "2026-04-17 09:30:00",
+      "po_origin": "S00106",
+      "po_lines": [
+        {
+          "product_id": 197,
+          "qty": 50.0,
+          "price_unit": 1660.69
+        }
+      ]
+    },
+    {
+      "partner_id": 493,
+      "partner_name": "모나용평",
+      "planned_date": "2026-03-27",
+      "expected_qty": 5,
+      "expected_product_id": 197,
+      "mail_id": 386,
+      "mail_state": "sent",
+      "mail_res_id": 493,
+      "lead_id": 89,
+      "lead_partner_id": 493,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 13200.0,
+      "lead_create_date": "2026-03-27 09:00:00",
+      "lead_date_open": "2026-03-27 09:00:00",
+      "so_id": 107,
+      "so_name": "S00107",
+      "so_partner_id": 493,
+      "so_state": "sale",
+      "so_opportunity_id": 89,
+      "so_amount_total": 13200.0,
+      "so_amount_untaxed": 12000.0,
+      "so_date_order": "2026-03-29 09:30:00",
+      "so_create_date": "2026-03-29 09:30:00",
+      "so_invoice_ids": [
+        101
+      ],
+      "so_lines": [
+        {
+          "product_id": 197,
+          "qty": 5.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 101,
+      "inv_name": "INV/2026/00048",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 13200.0,
+      "inv_amount_untaxed": 12000.0,
+      "inv_partner_id": 493,
+      "inv_date": "2026-03-30",
+      "inv_origin": "S00107",
+      "inv_line_ids": [
+        247
+      ],
+      "po_id": 37,
+      "po_name": "P00037",
+      "po_state": "purchase",
+      "po_partner_id": 476,
+      "po_amount_total": 7706.0,
+      "po_amount_untaxed": 7005.0,
+      "po_date_order": "2026-03-30 09:30:00",
+      "po_origin": "S00107",
+      "po_lines": [
+        {
+          "product_id": 197,
+          "qty": 5.0,
+          "price_unit": 1541.1
+        }
+      ]
+    },
+    {
+      "partner_id": 493,
+      "partner_name": "모나용평",
+      "planned_date": "2026-04-13",
+      "expected_qty": 3,
+      "expected_product_id": 170,
+      "mail_id": 387,
+      "mail_state": "sent",
+      "mail_res_id": 493,
+      "lead_id": 90,
+      "lead_partner_id": 493,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 9900.0,
+      "lead_create_date": "2026-04-13 09:00:00",
+      "lead_date_open": "2026-04-13 09:00:00",
+      "so_id": 108,
+      "so_name": "S00108",
+      "so_partner_id": 493,
+      "so_state": "sale",
+      "so_opportunity_id": 90,
+      "so_amount_total": 9900.0,
+      "so_amount_untaxed": 9000.0,
+      "so_date_order": "2026-04-13 09:30:00",
+      "so_create_date": "2026-04-13 09:30:00",
+      "so_invoice_ids": [
+        102
+      ],
+      "so_lines": [
+        {
+          "product_id": 170,
+          "qty": 3.0,
+          "price_unit": 3000.0
+        }
+      ],
+      "inv_id": 102,
+      "inv_name": "INV/2026/00049",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 9900.0,
+      "inv_amount_untaxed": 9000.0,
+      "inv_partner_id": 493,
+      "inv_date": "2026-04-14",
+      "inv_origin": "S00108",
+      "inv_line_ids": [
+        250
+      ],
+      "po_id": 38,
+      "po_name": "P00038",
+      "po_state": "purchase",
+      "po_partner_id": 477,
+      "po_amount_total": 5835.0,
+      "po_amount_untaxed": 5305.0,
+      "po_date_order": "2026-04-14 09:30:00",
+      "po_origin": "S00108",
+      "po_lines": [
+        {
+          "product_id": 170,
+          "qty": 3.0,
+          "price_unit": 1945.13
+        }
+      ]
+    },
+    {
+      "partner_id": 567,
+      "partner_name": "아리기획",
+      "planned_date": "2026-03-25",
+      "expected_qty": 5,
+      "expected_product_id": 188,
+      "mail_id": 388,
+      "mail_state": "sent",
+      "mail_res_id": 567,
+      "lead_id": 91,
+      "lead_partner_id": 567,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 13200.0,
+      "lead_create_date": "2026-03-25 09:00:00",
+      "lead_date_open": "2026-03-25 09:00:00",
+      "so_id": 109,
+      "so_name": "S00109",
+      "so_partner_id": 567,
+      "so_state": "sale",
+      "so_opportunity_id": 91,
+      "so_amount_total": 13200.0,
+      "so_amount_untaxed": 12000.0,
+      "so_date_order": "2026-03-26 09:30:00",
+      "so_create_date": "2026-03-26 09:30:00",
+      "so_invoice_ids": [
+        103
+      ],
+      "so_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 103,
+      "inv_name": "INV/2026/00050",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 13200.0,
+      "inv_amount_untaxed": 12000.0,
+      "inv_partner_id": 567,
+      "inv_date": "2026-03-27",
+      "inv_origin": "S00109",
+      "inv_line_ids": [
+        253
+      ],
+      "po_id": 39,
+      "po_name": "P00039",
+      "po_state": "purchase",
+      "po_partner_id": 601,
+      "po_amount_total": 7534.0,
+      "po_amount_untaxed": 6849.0,
+      "po_date_order": "2026-03-28 09:30:00",
+      "po_origin": "S00109",
+      "po_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 1506.88
+        }
+      ]
+    },
+    {
+      "partner_id": 567,
+      "partner_name": "아리기획",
+      "planned_date": "2026-04-10",
+      "expected_qty": 10,
+      "expected_product_id": 92,
+      "mail_id": 389,
+      "mail_state": "sent",
+      "mail_res_id": 567,
+      "lead_id": 92,
+      "lead_partner_id": 567,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 10.0,
+      "lead_create_date": "2026-04-10 09:00:00",
+      "lead_date_open": "2026-04-10 09:00:00",
+      "so_id": 110,
+      "so_name": "S00110",
+      "so_partner_id": 567,
+      "so_state": "sale",
+      "so_opportunity_id": 92,
+      "so_amount_total": 10.0,
+      "so_amount_untaxed": 10.0,
+      "so_date_order": "2026-04-12 09:30:00",
+      "so_create_date": "2026-04-12 09:30:00",
+      "so_invoice_ids": [
+        104
+      ],
+      "so_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 1.0
+        }
+      ],
+      "inv_id": 104,
+      "inv_name": "INV/2026/00051",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 10.0,
+      "inv_amount_untaxed": 10.0,
+      "inv_partner_id": 567,
+      "inv_date": "2026-04-13",
+      "inv_origin": "S00110",
+      "inv_line_ids": [
+        256
+      ],
+      "po_id": 40,
+      "po_name": "P00040",
+      "po_state": "purchase",
+      "po_partner_id": 358,
+      "po_amount_total": 7.0,
+      "po_amount_untaxed": 7.0,
+      "po_date_order": "2026-04-13 09:30:00",
+      "po_origin": "S00110",
+      "po_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 0.68
+        }
+      ]
+    },
+    {
+      "partner_id": 575,
+      "partner_name": "사직나눔재단",
+      "planned_date": "2026-03-24",
+      "expected_qty": 50,
+      "expected_product_id": 170,
+      "mail_id": 390,
+      "mail_state": "sent",
+      "mail_res_id": 575,
+      "lead_id": 93,
+      "lead_partner_id": 575,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 165000.0,
+      "lead_create_date": "2026-03-24 09:00:00",
+      "lead_date_open": "2026-03-24 09:00:00",
+      "so_id": 111,
+      "so_name": "S00111",
+      "so_partner_id": 575,
+      "so_state": "sale",
+      "so_opportunity_id": 93,
+      "so_amount_total": 165000.0,
+      "so_amount_untaxed": 150000.0,
+      "so_date_order": "2026-03-24 09:30:00",
+      "so_create_date": "2026-03-24 09:30:00",
+      "so_invoice_ids": [
+        105
+      ],
+      "so_lines": [
+        {
+          "product_id": 170,
+          "qty": 50.0,
+          "price_unit": 3000.0
+        }
+      ],
+      "inv_id": 105,
+      "inv_name": "INV/2026/00052",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 165000.0,
+      "inv_amount_untaxed": 150000.0,
+      "inv_partner_id": 575,
+      "inv_date": "2026-03-25",
+      "inv_origin": "S00111",
+      "inv_line_ids": [
+        258
+      ],
+      "po_id": 41,
+      "po_name": "P00041",
+      "po_state": "purchase",
+      "po_partner_id": 484,
+      "po_amount_total": 97848.0,
+      "po_amount_untaxed": 88953.0,
+      "po_date_order": "2026-03-25 09:30:00",
+      "po_origin": "S00111",
+      "po_lines": [
+        {
+          "product_id": 170,
+          "qty": 50.0,
+          "price_unit": 1956.95
+        }
+      ]
+    },
+    {
+      "partner_id": 575,
+      "partner_name": "사직나눔재단",
+      "planned_date": "2026-04-01",
+      "expected_qty": 5,
+      "expected_product_id": 188,
+      "mail_id": 391,
+      "mail_state": "sent",
+      "mail_res_id": 575,
+      "lead_id": 94,
+      "lead_partner_id": 575,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 13200.0,
+      "lead_create_date": "2026-04-01 09:00:00",
+      "lead_date_open": "2026-04-01 09:00:00",
+      "so_id": 112,
+      "so_name": "S00112",
+      "so_partner_id": 575,
+      "so_state": "sale",
+      "so_opportunity_id": 94,
+      "so_amount_total": 13200.0,
+      "so_amount_untaxed": 12000.0,
+      "so_date_order": "2026-04-02 09:30:00",
+      "so_create_date": "2026-04-02 09:30:00",
+      "so_invoice_ids": [
+        106
+      ],
+      "so_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 106,
+      "inv_name": "INV/2026/00053",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 13200.0,
+      "inv_amount_untaxed": 12000.0,
+      "inv_partner_id": 575,
+      "inv_date": "2026-04-03",
+      "inv_origin": "S00112",
+      "inv_line_ids": [
+        261
+      ],
+      "po_id": 42,
+      "po_name": "P00042",
+      "po_state": "purchase",
+      "po_partner_id": 485,
+      "po_amount_total": 7953.0,
+      "po_amount_untaxed": 7230.0,
+      "po_date_order": "2026-04-04 09:30:00",
+      "po_origin": "S00112",
+      "po_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 1590.62
+        }
+      ]
+    },
+    {
+      "partner_id": 576,
+      "partner_name": "일곡문화재단",
+      "planned_date": "2026-03-26",
+      "expected_qty": 20,
+      "expected_product_id": 188,
+      "mail_id": 392,
+      "mail_state": "sent",
+      "mail_res_id": 576,
+      "lead_id": 95,
+      "lead_partner_id": 576,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 52800.0,
+      "lead_create_date": "2026-03-26 09:00:00",
+      "lead_date_open": "2026-03-26 09:00:00",
+      "so_id": 113,
+      "so_name": "S00113",
+      "so_partner_id": 576,
+      "so_state": "sale",
+      "so_opportunity_id": 95,
+      "so_amount_total": 52800.0,
+      "so_amount_untaxed": 48000.0,
+      "so_date_order": "2026-03-28 09:30:00",
+      "so_create_date": "2026-03-28 09:30:00",
+      "so_invoice_ids": [
+        107
+      ],
+      "so_lines": [
+        {
+          "product_id": 188,
+          "qty": 20.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 107,
+      "inv_name": "INV/2026/00054",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 52800.0,
+      "inv_amount_untaxed": 48000.0,
+      "inv_partner_id": 576,
+      "inv_date": "2026-03-29",
+      "inv_origin": "S00113",
+      "inv_line_ids": [
+        264
+      ],
+      "po_id": 43,
+      "po_name": "P00043",
+      "po_state": "purchase",
+      "po_partner_id": 601,
+      "po_amount_total": 29018.0,
+      "po_amount_untaxed": 26380.0,
+      "po_date_order": "2026-03-29 09:30:00",
+      "po_origin": "S00113",
+      "po_lines": [
+        {
+          "product_id": 188,
+          "qty": 20.0,
+          "price_unit": 1450.89
+        }
+      ]
+    },
+    {
+      "partner_id": 576,
+      "partner_name": "일곡문화재단",
+      "planned_date": "2026-04-08",
+      "expected_qty": 10,
+      "expected_product_id": 92,
+      "mail_id": 393,
+      "mail_state": "sent",
+      "mail_res_id": 576,
+      "lead_id": 96,
+      "lead_partner_id": 576,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 10.0,
+      "lead_create_date": "2026-04-08 09:00:00",
+      "lead_date_open": "2026-04-08 09:00:00",
+      "so_id": 114,
+      "so_name": "S00114",
+      "so_partner_id": 576,
+      "so_state": "sale",
+      "so_opportunity_id": 96,
+      "so_amount_total": 10.0,
+      "so_amount_untaxed": 10.0,
+      "so_date_order": "2026-04-08 09:30:00",
+      "so_create_date": "2026-04-08 09:30:00",
+      "so_invoice_ids": [
+        108
+      ],
+      "so_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 1.0
+        }
+      ],
+      "inv_id": 108,
+      "inv_name": "INV/2026/00055",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 10.0,
+      "inv_amount_untaxed": 10.0,
+      "inv_partner_id": 576,
+      "inv_date": "2026-04-09",
+      "inv_origin": "S00114",
+      "inv_line_ids": [
+        267
+      ],
+      "po_id": 44,
+      "po_name": "P00044",
+      "po_state": "purchase",
+      "po_partner_id": 358,
+      "po_amount_total": 6.0,
+      "po_amount_untaxed": 6.0,
+      "po_date_order": "2026-04-09 09:30:00",
+      "po_origin": "S00114",
+      "po_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 0.61
+        }
+      ]
+    },
+    {
+      "partner_id": 594,
+      "partner_name": "WJ바이오",
+      "planned_date": "2026-04-10",
+      "expected_qty": 5,
+      "expected_product_id": 188,
+      "mail_id": 394,
+      "mail_state": "sent",
+      "mail_res_id": 594,
+      "lead_id": 97,
+      "lead_partner_id": 594,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 13200.0,
+      "lead_create_date": "2026-04-10 09:00:00",
+      "lead_date_open": "2026-04-10 09:00:00",
+      "so_id": 115,
+      "so_name": "S00115",
+      "so_partner_id": 594,
+      "so_state": "sale",
+      "so_opportunity_id": 97,
+      "so_amount_total": 13200.0,
+      "so_amount_untaxed": 12000.0,
+      "so_date_order": "2026-04-11 09:30:00",
+      "so_create_date": "2026-04-11 09:30:00",
+      "so_invoice_ids": [
+        109
+      ],
+      "so_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 109,
+      "inv_name": "INV/2026/00056",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 13200.0,
+      "inv_amount_untaxed": 12000.0,
+      "inv_partner_id": 664,
+      "inv_date": "2026-04-12",
+      "inv_origin": "S00115",
+      "inv_line_ids": [
+        269
+      ],
+      "po_id": 45,
+      "po_name": "P00045",
+      "po_state": "purchase",
+      "po_partner_id": 481,
+      "po_amount_total": 7587.0,
+      "po_amount_untaxed": 6897.0,
+      "po_date_order": "2026-04-13 09:30:00",
+      "po_origin": "S00115",
+      "po_lines": [
+        {
+          "product_id": 188,
+          "qty": 5.0,
+          "price_unit": 1517.39
+        }
+      ]
+    },
+    {
+      "partner_id": 594,
+      "partner_name": "WJ바이오",
+      "planned_date": "2026-04-14",
+      "expected_qty": 10,
+      "expected_product_id": 92,
+      "mail_id": 395,
+      "mail_state": "sent",
+      "mail_res_id": 594,
+      "lead_id": 98,
+      "lead_partner_id": 594,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 10.0,
+      "lead_create_date": "2026-04-14 09:00:00",
+      "lead_date_open": "2026-04-14 09:00:00",
+      "so_id": 116,
+      "so_name": "S00116",
+      "so_partner_id": 594,
+      "so_state": "sale",
+      "so_opportunity_id": 98,
+      "so_amount_total": 10.0,
+      "so_amount_untaxed": 10.0,
+      "so_date_order": "2026-04-16 09:30:00",
+      "so_create_date": "2026-04-16 09:30:00",
+      "so_invoice_ids": [
+        98
+      ],
+      "so_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 1.0
+        }
+      ],
+      "inv_id": 98,
+      "inv_name": "INV/2026/00045",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 10.0,
+      "inv_amount_untaxed": 10.0,
+      "inv_partner_id": 664,
+      "inv_date": "2026-04-16",
+      "inv_origin": "S00116",
+      "inv_line_ids": [
+        240
+      ],
+      "po_id": 46,
+      "po_name": "P00046",
+      "po_state": "purchase",
+      "po_partner_id": 482,
+      "po_amount_total": 6.0,
+      "po_amount_untaxed": 6.0,
+      "po_date_order": "2026-04-17 09:30:00",
+      "po_origin": "S00116",
+      "po_lines": [
+        {
+          "product_id": 92,
+          "qty": 10.0,
+          "price_unit": 0.61
+        }
+      ]
+    },
+    {
+      "partner_id": 647,
+      "partner_name": "무브멘토",
+      "planned_date": "2026-03-27",
+      "expected_qty": 20,
+      "expected_product_id": 170,
+      "mail_id": 396,
+      "mail_state": "sent",
+      "mail_res_id": 647,
+      "lead_id": 99,
+      "lead_partner_id": 647,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 66000.0,
+      "lead_create_date": "2026-03-27 09:00:00",
+      "lead_date_open": "2026-03-27 09:00:00",
+      "so_id": 117,
+      "so_name": "S00117",
+      "so_partner_id": 647,
+      "so_state": "sale",
+      "so_opportunity_id": 99,
+      "so_amount_total": 66000.0,
+      "so_amount_untaxed": 60000.0,
+      "so_date_order": "2026-03-27 09:30:00",
+      "so_create_date": "2026-03-27 09:30:00",
+      "so_invoice_ids": [
+        110
+      ],
+      "so_lines": [
+        {
+          "product_id": 170,
+          "qty": 20.0,
+          "price_unit": 3000.0
+        }
+      ],
+      "inv_id": 110,
+      "inv_name": "INV/2026/00057",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 66000.0,
+      "inv_amount_untaxed": 60000.0,
+      "inv_partner_id": 647,
+      "inv_date": "2026-03-28",
+      "inv_origin": "S00117",
+      "inv_line_ids": [
+        272
+      ],
+      "po_id": 47,
+      "po_name": "P00047",
+      "po_state": "purchase",
+      "po_partner_id": 484,
+      "po_amount_total": 41922.0,
+      "po_amount_untaxed": 38111.0,
+      "po_date_order": "2026-03-28 09:30:00",
+      "po_origin": "S00117",
+      "po_lines": [
+        {
+          "product_id": 170,
+          "qty": 20.0,
+          "price_unit": 2096.11
+        }
+      ]
+    },
+    {
+      "partner_id": 647,
+      "partner_name": "무브멘토",
+      "planned_date": "2026-04-08",
+      "expected_qty": 50,
+      "expected_product_id": 188,
+      "mail_id": 397,
+      "mail_state": "sent",
+      "mail_res_id": 647,
+      "lead_id": 100,
+      "lead_partner_id": 647,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 132000.0,
+      "lead_create_date": "2026-04-08 09:00:00",
+      "lead_date_open": "2026-04-08 09:00:00",
+      "so_id": 118,
+      "so_name": "S00118",
+      "so_partner_id": 647,
+      "so_state": "sale",
+      "so_opportunity_id": 100,
+      "so_amount_total": 132000.0,
+      "so_amount_untaxed": 120000.0,
+      "so_date_order": "2026-04-09 09:30:00",
+      "so_create_date": "2026-04-09 09:30:00",
+      "so_invoice_ids": [
+        111
+      ],
+      "so_lines": [
+        {
+          "product_id": 188,
+          "qty": 50.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 111,
+      "inv_name": "INV/2026/00058",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 132000.0,
+      "inv_amount_untaxed": 120000.0,
+      "inv_partner_id": 647,
+      "inv_date": "2026-04-10",
+      "inv_origin": "S00118",
+      "inv_line_ids": [
+        275
+      ],
+      "po_id": 48,
+      "po_name": "P00048",
+      "po_state": "purchase",
+      "po_partner_id": 485,
+      "po_amount_total": 72358.0,
+      "po_amount_untaxed": 65780.0,
+      "po_date_order": "2026-04-11 09:30:00",
+      "po_origin": "S00118",
+      "po_lines": [
+        {
+          "product_id": 188,
+          "qty": 50.0,
+          "price_unit": 1447.16
+        }
+      ]
+    },
+    {
+      "partner_id": 649,
+      "partner_name": "일곡문화재단 PLA 현수막",
+      "planned_date": "2026-03-24",
+      "expected_qty": 50,
+      "expected_product_id": 92,
+      "mail_id": 398,
+      "mail_state": "sent",
+      "mail_res_id": 649,
+      "lead_id": 101,
+      "lead_partner_id": 649,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 50.0,
+      "lead_create_date": "2026-03-24 09:00:00",
+      "lead_date_open": "2026-03-24 09:00:00",
+      "so_id": 119,
+      "so_name": "S00119",
+      "so_partner_id": 649,
+      "so_state": "sale",
+      "so_opportunity_id": 101,
+      "so_amount_total": 50.0,
+      "so_amount_untaxed": 50.0,
+      "so_date_order": "2026-03-26 09:30:00",
+      "so_create_date": "2026-03-26 09:30:00",
+      "so_invoice_ids": [
+        112
+      ],
+      "so_lines": [
+        {
+          "product_id": 92,
+          "qty": 50.0,
+          "price_unit": 1.0
+        }
+      ],
+      "inv_id": 112,
+      "inv_name": "INV/2026/00059",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 50.0,
+      "inv_amount_untaxed": 50.0,
+      "inv_partner_id": 649,
+      "inv_date": "2026-03-27",
+      "inv_origin": "S00119",
+      "inv_line_ids": [
+        278
+      ],
+      "po_id": 49,
+      "po_name": "P00049",
+      "po_state": "purchase",
+      "po_partner_id": 358,
+      "po_amount_total": 32.0,
+      "po_amount_untaxed": 32.0,
+      "po_date_order": "2026-03-27 09:30:00",
+      "po_origin": "S00119",
+      "po_lines": [
+        {
+          "product_id": 92,
+          "qty": 50.0,
+          "price_unit": 0.63
+        }
+      ]
+    },
+    {
+      "partner_id": 649,
+      "partner_name": "일곡문화재단 PLA 현수막",
+      "planned_date": "2026-04-06",
+      "expected_qty": 10,
+      "expected_product_id": 206,
+      "mail_id": 399,
+      "mail_state": "sent",
+      "mail_res_id": 649,
+      "lead_id": 102,
+      "lead_partner_id": 649,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 26400.0,
+      "lead_create_date": "2026-04-06 09:00:00",
+      "lead_date_open": "2026-04-06 09:00:00",
+      "so_id": 120,
+      "so_name": "S00120",
+      "so_partner_id": 649,
+      "so_state": "sale",
+      "so_opportunity_id": 102,
+      "so_amount_total": 26400.0,
+      "so_amount_untaxed": 24000.0,
+      "so_date_order": "2026-04-06 09:30:00",
+      "so_create_date": "2026-04-06 09:30:00",
+      "so_invoice_ids": [
+        113
+      ],
+      "so_lines": [
+        {
+          "product_id": 206,
+          "qty": 10.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 113,
+      "inv_name": "INV/2026/00060",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 26400.0,
+      "inv_amount_untaxed": 24000.0,
+      "inv_partner_id": 649,
+      "inv_date": "2026-04-07",
+      "inv_origin": "S00120",
+      "inv_line_ids": [
+        280
+      ],
+      "po_id": 50,
+      "po_name": "P00050",
+      "po_state": "purchase",
+      "po_partner_id": 476,
+      "po_amount_total": 15483.0,
+      "po_amount_untaxed": 14075.0,
+      "po_date_order": "2026-04-07 09:30:00",
+      "po_origin": "S00120",
+      "po_lines": [
+        {
+          "product_id": 206,
+          "qty": 10.0,
+          "price_unit": 1548.3
+        }
+      ]
+    },
+    {
+      "partner_id": 650,
+      "partner_name": "동물자유연대",
+      "planned_date": "2026-03-25",
+      "expected_qty": 50,
+      "expected_product_id": 206,
+      "mail_id": 400,
+      "mail_state": "sent",
+      "mail_res_id": 650,
+      "lead_id": 103,
+      "lead_partner_id": 650,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 132000.0,
+      "lead_create_date": "2026-03-25 09:00:00",
+      "lead_date_open": "2026-03-25 09:00:00",
+      "so_id": 121,
+      "so_name": "S00121",
+      "so_partner_id": 650,
+      "so_state": "sale",
+      "so_opportunity_id": 103,
+      "so_amount_total": 132000.0,
+      "so_amount_untaxed": 120000.0,
+      "so_date_order": "2026-03-26 09:30:00",
+      "so_create_date": "2026-03-26 09:30:00",
+      "so_invoice_ids": [
+        114
+      ],
+      "so_lines": [
+        {
+          "product_id": 206,
+          "qty": 50.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 114,
+      "inv_name": "INV/2026/00061",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 132000.0,
+      "inv_amount_untaxed": 120000.0,
+      "inv_partner_id": 650,
+      "inv_date": "2026-03-27",
+      "inv_origin": "S00121",
+      "inv_line_ids": [
+        283
+      ],
+      "po_id": 51,
+      "po_name": "P00051",
+      "po_state": "purchase",
+      "po_partner_id": 478,
+      "po_amount_total": 79096.0,
+      "po_amount_untaxed": 71905.0,
+      "po_date_order": "2026-03-28 09:30:00",
+      "po_origin": "S00121",
+      "po_lines": [
+        {
+          "product_id": 206,
+          "qty": 50.0,
+          "price_unit": 1581.92
+        }
+      ]
+    },
+    {
+      "partner_id": 650,
+      "partner_name": "동물자유연대",
+      "planned_date": "2026-04-03",
+      "expected_qty": 2,
+      "expected_product_id": 233,
+      "mail_id": 401,
+      "mail_state": "sent",
+      "mail_res_id": 650,
+      "lead_id": 104,
+      "lead_partner_id": 650,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 5280.0,
+      "lead_create_date": "2026-04-03 09:00:00",
+      "lead_date_open": "2026-04-03 09:00:00",
+      "so_id": 122,
+      "so_name": "S00122",
+      "so_partner_id": 650,
+      "so_state": "sale",
+      "so_opportunity_id": 104,
+      "so_amount_total": 5280.0,
+      "so_amount_untaxed": 4800.0,
+      "so_date_order": "2026-04-05 09:30:00",
+      "so_create_date": "2026-04-05 09:30:00",
+      "so_invoice_ids": [
+        115
+      ],
+      "so_lines": [
+        {
+          "product_id": 233,
+          "qty": 2.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 115,
+      "inv_name": "INV/2026/00062",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 5280.0,
+      "inv_amount_untaxed": 4800.0,
+      "inv_partner_id": 650,
+      "inv_date": "2026-04-06",
+      "inv_origin": "S00122",
+      "inv_line_ids": [
+        286
+      ],
+      "po_id": 52,
+      "po_name": "P00052",
+      "po_state": "purchase",
+      "po_partner_id": 479,
+      "po_amount_total": 3185.0,
+      "po_amount_untaxed": 2895.0,
+      "po_date_order": "2026-04-06 09:30:00",
+      "po_origin": "S00122",
+      "po_lines": [
+        {
+          "product_id": 233,
+          "qty": 2.0,
+          "price_unit": 1592.56
+        }
+      ]
+    },
+    {
+      "partner_id": 651,
+      "partner_name": "경기환경에너지진흥원",
+      "planned_date": "2026-03-26",
+      "expected_qty": 5,
+      "expected_product_id": 233,
+      "mail_id": 402,
+      "mail_state": "sent",
+      "mail_res_id": 651,
+      "lead_id": 105,
+      "lead_partner_id": 651,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 13200.0,
+      "lead_create_date": "2026-03-26 09:00:00",
+      "lead_date_open": "2026-03-26 09:00:00",
+      "so_id": 123,
+      "so_name": "S00123",
+      "so_partner_id": 651,
+      "so_state": "sale",
+      "so_opportunity_id": 105,
+      "so_amount_total": 13200.0,
+      "so_amount_untaxed": 12000.0,
+      "so_date_order": "2026-03-26 09:30:00",
+      "so_create_date": "2026-03-26 09:30:00",
+      "so_invoice_ids": [
+        116
+      ],
+      "so_lines": [
+        {
+          "product_id": 233,
+          "qty": 5.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 116,
+      "inv_name": "INV/2026/00063",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 13200.0,
+      "inv_amount_untaxed": 12000.0,
+      "inv_partner_id": 651,
+      "inv_date": "2026-03-27",
+      "inv_origin": "S00123",
+      "inv_line_ids": [
+        289
+      ],
+      "po_id": 53,
+      "po_name": "P00053",
+      "po_state": "purchase",
+      "po_partner_id": 481,
+      "po_amount_total": 7455.0,
+      "po_amount_untaxed": 6777.0,
+      "po_date_order": "2026-03-27 09:30:00",
+      "po_origin": "S00123",
+      "po_lines": [
+        {
+          "product_id": 233,
+          "qty": 5.0,
+          "price_unit": 1491.05
+        }
+      ]
+    },
+    {
+      "partner_id": 651,
+      "partner_name": "경기환경에너지진흥원",
+      "planned_date": "2026-04-06",
+      "expected_qty": 20,
+      "expected_product_id": 172,
+      "mail_id": 403,
+      "mail_state": "sent",
+      "mail_res_id": 651,
+      "lead_id": 106,
+      "lead_partner_id": 651,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 52800.0,
+      "lead_create_date": "2026-04-06 09:00:00",
+      "lead_date_open": "2026-04-06 09:00:00",
+      "so_id": 124,
+      "so_name": "S00124",
+      "so_partner_id": 651,
+      "so_state": "sale",
+      "so_opportunity_id": 106,
+      "so_amount_total": 52800.0,
+      "so_amount_untaxed": 48000.0,
+      "so_date_order": "2026-04-07 09:30:00",
+      "so_create_date": "2026-04-07 09:30:00",
+      "so_invoice_ids": [
+        117
+      ],
+      "so_lines": [
+        {
+          "product_id": 172,
+          "qty": 20.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 117,
+      "inv_name": "INV/2026/00064",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 52800.0,
+      "inv_amount_untaxed": 48000.0,
+      "inv_partner_id": 651,
+      "inv_date": "2026-04-08",
+      "inv_origin": "S00124",
+      "inv_line_ids": [
+        292
+      ],
+      "po_id": 54,
+      "po_name": "P00054",
+      "po_state": "purchase",
+      "po_partner_id": 482,
+      "po_amount_total": 32577.0,
+      "po_amount_untaxed": 29615.0,
+      "po_date_order": "2026-04-09 09:30:00",
+      "po_origin": "S00124",
+      "po_lines": [
+        {
+          "product_id": 172,
+          "qty": 20.0,
+          "price_unit": 1628.84
+        }
+      ]
+    },
+    {
+      "partner_id": 652,
+      "partner_name": "모나용평",
+      "planned_date": "2026-03-23",
+      "expected_qty": 10,
+      "expected_product_id": 172,
+      "mail_id": 404,
+      "mail_state": "sent",
+      "mail_res_id": 652,
+      "lead_id": 107,
+      "lead_partner_id": 652,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 26400.0,
+      "lead_create_date": "2026-03-23 09:00:00",
+      "lead_date_open": "2026-03-23 09:00:00",
+      "so_id": 125,
+      "so_name": "S00125",
+      "so_partner_id": 652,
+      "so_state": "sale",
+      "so_opportunity_id": 107,
+      "so_amount_total": 26400.0,
+      "so_amount_untaxed": 24000.0,
+      "so_date_order": "2026-03-25 09:30:00",
+      "so_create_date": "2026-03-25 09:30:00",
+      "so_invoice_ids": [
+        118
+      ],
+      "so_lines": [
+        {
+          "product_id": 172,
+          "qty": 10.0,
+          "price_unit": 2400.0
+        }
+      ],
+      "inv_id": 118,
+      "inv_name": "INV/2026/00065",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 26400.0,
+      "inv_amount_untaxed": 24000.0,
+      "inv_partner_id": 652,
+      "inv_date": "2026-03-26",
+      "inv_origin": "S00125",
+      "inv_line_ids": [
+        295
+      ],
+      "po_id": 55,
+      "po_name": "P00055",
+      "po_state": "purchase",
+      "po_partner_id": 484,
+      "po_amount_total": 15364.0,
+      "po_amount_untaxed": 13967.0,
+      "po_date_order": "2026-03-26 09:30:00",
+      "po_origin": "S00125",
+      "po_lines": [
+        {
+          "product_id": 172,
+          "qty": 10.0,
+          "price_unit": 1536.37
+        }
+      ]
+    },
+    {
+      "partner_id": 652,
+      "partner_name": "모나용평",
+      "planned_date": "2026-03-30",
+      "expected_qty": 20,
+      "expected_product_id": 241,
+      "mail_id": 405,
+      "mail_state": "sent",
+      "mail_res_id": 652,
+      "lead_id": 108,
+      "lead_partner_id": 652,
+      "lead_type": "opportunity",
+      "lead_stage_id": 1,
+      "lead_expected_revenue": 24000.0,
+      "lead_create_date": "2026-03-30 09:00:00",
+      "lead_date_open": "2026-03-30 09:00:00",
+      "so_id": 126,
+      "so_name": "S00126",
+      "so_partner_id": 652,
+      "so_state": "sale",
+      "so_opportunity_id": 108,
+      "so_amount_total": 24000.0,
+      "so_amount_untaxed": 24000.0,
+      "so_date_order": "2026-03-30 09:30:00",
+      "so_create_date": "2026-03-30 09:30:00",
+      "so_invoice_ids": [
+        119
+      ],
+      "so_lines": [
+        {
+          "product_id": 241,
+          "qty": 20.0,
+          "price_unit": 1200.0
+        }
+      ],
+      "inv_id": 119,
+      "inv_name": "INV/2026/00066",
+      "inv_state": "posted",
+      "inv_move_type": "out_invoice",
+      "inv_amount_total": 24000.0,
+      "inv_amount_untaxed": 24000.0,
+      "inv_partner_id": 652,
+      "inv_date": "2026-03-31",
+      "inv_origin": "S00126",
+      "inv_line_ids": [
+        298
+      ],
+      "po_id": 56,
+      "po_name": "P00056",
+      "po_state": "purchase",
+      "po_partner_id": 485,
+      "po_amount_total": 14994.0,
+      "po_amount_untaxed": 14994.0,
+      "po_date_order": "2026-03-31 09:30:00",
+      "po_origin": "S00126",
+      "po_lines": [
+        {
+          "product_id": 241,
+          "qty": 20.0,
+          "price_unit": 749.71
+        }
+      ]
+    }
+  ],
+  "checks": [
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=384 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=87 type=opportunity partner=492"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=105 state=sale opp=87 expected=87"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=99 state=posted so.invoice_ids=[99]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=35 state=purchase origin='S00105' so_name='S00105'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=24,000.00 INV=24,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 256, 'qty': 20.0, 'price_unit': 1200.0}] PO_lines=[{'product_id': 256, 'qty': 20.0, 'price_unit': 826.85}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.689] expected=0.6890 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=24,000.00 PO_untax=16,537.00 untax_ratio=0.6890 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-02) <= SO(2026-04-02) ? True; SO(2026-04-02) <= INV(2026-04-03) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-02 09:30:00 PO=2026-04-03 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=24,000.00 SO=24,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=385 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=88 type=opportunity partner=492"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=106 state=sale opp=88 expected=88"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=100 state=posted so.invoice_ids=[100]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=36 state=purchase origin='S00106' so_name='S00106'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=132,000.00 INV=132,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 197, 'qty': 50.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 197, 'qty': 50.0, 'price_unit': 1660.69}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.692] expected=0.6920 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=120,000.00 PO_untax=75,486.00 untax_ratio=0.6290 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-14) <= SO(2026-04-15) ? True; SO(2026-04-15) <= INV(2026-04-16) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-15 09:30:00 PO=2026-04-17 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=132,000.00 SO=132,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=386 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=89 type=opportunity partner=493"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=107 state=sale opp=89 expected=89"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=101 state=posted so.invoice_ids=[101]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=37 state=purchase origin='S00107' so_name='S00107'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=13,200.00 INV=13,200.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 197, 'qty': 5.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 197, 'qty': 5.0, 'price_unit': 1541.1}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6421] expected=0.6421 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=12,000.00 PO_untax=7,005.00 untax_ratio=0.5837 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-27) <= SO(2026-03-29) ? True; SO(2026-03-29) <= INV(2026-03-30) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-29 09:30:00 PO=2026-03-30 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=13,200.00 SO=13,200.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=387 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=90 type=opportunity partner=493"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=108 state=sale opp=90 expected=90"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=102 state=posted so.invoice_ids=[102]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=38 state=purchase origin='S00108' so_name='S00108'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=9,900.00 INV=9,900.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 170, 'qty': 3.0, 'price_unit': 3000.0}] PO_lines=[{'product_id': 170, 'qty': 3.0, 'price_unit': 1945.13}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6484] expected=0.6484 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=9,000.00 PO_untax=5,305.00 untax_ratio=0.5894 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-13) <= SO(2026-04-13) ? True; SO(2026-04-13) <= INV(2026-04-14) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-13 09:30:00 PO=2026-04-14 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=9,900.00 SO=9,900.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=388 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=91 type=opportunity partner=567"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=109 state=sale opp=91 expected=91"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=103 state=posted so.invoice_ids=[103]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=39 state=purchase origin='S00109' so_name='S00109'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=13,200.00 INV=13,200.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 1506.88}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6279] expected=0.6279 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=12,000.00 PO_untax=6,849.00 untax_ratio=0.5707 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-25) <= SO(2026-03-26) ? True; SO(2026-03-26) <= INV(2026-03-27) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-26 09:30:00 PO=2026-03-28 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=13,200.00 SO=13,200.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=389 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=92 type=opportunity partner=567"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=110 state=sale opp=92 expected=92"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=104 state=posted so.invoice_ids=[104]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=40 state=purchase origin='S00110' so_name='S00110'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=10.00 INV=10.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 1.0}] PO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 0.68}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.68] expected=0.6769 match=False"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=10.00 PO_untax=7.00 untax_ratio=0.7000 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-10) <= SO(2026-04-12) ? True; SO(2026-04-12) <= INV(2026-04-13) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-12 09:30:00 PO=2026-04-13 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=10.00 SO=10.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=390 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=93 type=opportunity partner=575"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=111 state=sale opp=93 expected=93"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=105 state=posted so.invoice_ids=[105]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=41 state=purchase origin='S00111' so_name='S00111'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=165,000.00 INV=165,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 170, 'qty': 50.0, 'price_unit': 3000.0}] PO_lines=[{'product_id': 170, 'qty': 50.0, 'price_unit': 1956.95}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6523] expected=0.6523 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=150,000.00 PO_untax=88,953.00 untax_ratio=0.5930 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-24) <= SO(2026-03-24) ? True; SO(2026-03-24) <= INV(2026-03-25) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-24 09:30:00 PO=2026-03-25 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=165,000.00 SO=165,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=391 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=94 type=opportunity partner=575"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=112 state=sale opp=94 expected=94"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=106 state=posted so.invoice_ids=[106]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=42 state=purchase origin='S00112' so_name='S00112'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=13,200.00 INV=13,200.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 1590.62}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6628] expected=0.6628 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=12,000.00 PO_untax=7,230.00 untax_ratio=0.6025 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-01) <= SO(2026-04-02) ? True; SO(2026-04-02) <= INV(2026-04-03) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-02 09:30:00 PO=2026-04-04 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=13,200.00 SO=13,200.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=392 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=95 type=opportunity partner=576"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=113 state=sale opp=95 expected=95"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=107 state=posted so.invoice_ids=[107]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=43 state=purchase origin='S00113' so_name='S00113'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=52,800.00 INV=52,800.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 188, 'qty': 20.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 188, 'qty': 20.0, 'price_unit': 1450.89}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6045] expected=0.6045 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=48,000.00 PO_untax=26,380.00 untax_ratio=0.5496 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-26) <= SO(2026-03-28) ? True; SO(2026-03-28) <= INV(2026-03-29) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-28 09:30:00 PO=2026-03-29 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=52,800.00 SO=52,800.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=393 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=96 type=opportunity partner=576"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=114 state=sale opp=96 expected=96"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=108 state=posted so.invoice_ids=[108]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=44 state=purchase origin='S00114' so_name='S00114'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=10.00 INV=10.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 1.0}] PO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 0.61}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.61] expected=0.6072 match=False"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=10.00 PO_untax=6.00 untax_ratio=0.6000 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-08) <= SO(2026-04-08) ? True; SO(2026-04-08) <= INV(2026-04-09) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-08 09:30:00 PO=2026-04-09 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=10.00 SO=10.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=394 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=97 type=opportunity partner=594"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=115 state=sale opp=97 expected=97"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=109 state=posted so.invoice_ids=[109]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=45 state=purchase origin='S00115' so_name='S00115'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=13,200.00 INV=13,200.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 188, 'qty': 5.0, 'price_unit': 1517.39}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6322] expected=0.6322 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=12,000.00 PO_untax=6,897.00 untax_ratio=0.5747 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-10) <= SO(2026-04-11) ? True; SO(2026-04-11) <= INV(2026-04-12) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-11 09:30:00 PO=2026-04-13 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=13,200.00 SO=13,200.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=395 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=98 type=opportunity partner=594"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=116 state=sale opp=98 expected=98"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=98 state=posted so.invoice_ids=[98]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=46 state=purchase origin='S00116' so_name='S00116'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=10.00 INV=10.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 1.0}] PO_lines=[{'product_id': 92, 'qty': 10.0, 'price_unit': 0.61}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.61] expected=0.6051 match=False"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=10.00 PO_untax=6.00 untax_ratio=0.6000 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-14) <= SO(2026-04-16) ? True; SO(2026-04-16) <= INV(2026-04-16) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-16 09:30:00 PO=2026-04-17 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=10.00 SO=10.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=396 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=99 type=opportunity partner=647"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=117 state=sale opp=99 expected=99"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=110 state=posted so.invoice_ids=[110]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=47 state=purchase origin='S00117' so_name='S00117'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=66,000.00 INV=66,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 170, 'qty': 20.0, 'price_unit': 3000.0}] PO_lines=[{'product_id': 170, 'qty': 20.0, 'price_unit': 2096.11}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6987] expected=0.6987 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=60,000.00 PO_untax=38,111.00 untax_ratio=0.6352 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-27) <= SO(2026-03-27) ? True; SO(2026-03-27) <= INV(2026-03-28) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-27 09:30:00 PO=2026-03-28 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=66,000.00 SO=66,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=397 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=100 type=opportunity partner=647"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=118 state=sale opp=100 expected=100"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=111 state=posted so.invoice_ids=[111]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=48 state=purchase origin='S00118' so_name='S00118'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=132,000.00 INV=132,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 188, 'qty': 50.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 188, 'qty': 50.0, 'price_unit': 1447.16}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.603] expected=0.6030 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=120,000.00 PO_untax=65,780.00 untax_ratio=0.5482 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-08) <= SO(2026-04-09) ? True; SO(2026-04-09) <= INV(2026-04-10) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-09 09:30:00 PO=2026-04-11 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=132,000.00 SO=132,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=398 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=101 type=opportunity partner=649"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=119 state=sale opp=101 expected=101"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=112 state=posted so.invoice_ids=[112]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=49 state=purchase origin='S00119' so_name='S00119'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=50.00 INV=50.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 92, 'qty': 50.0, 'price_unit': 1.0}] PO_lines=[{'product_id': 92, 'qty': 50.0, 'price_unit': 0.63}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.63] expected=0.6315 match=False"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=50.00 PO_untax=32.00 untax_ratio=0.6400 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-24) <= SO(2026-03-26) ? True; SO(2026-03-26) <= INV(2026-03-27) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-26 09:30:00 PO=2026-03-27 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=50.00 SO=50.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=399 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=102 type=opportunity partner=649"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=120 state=sale opp=102 expected=102"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=113 state=posted so.invoice_ids=[113]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=50 state=purchase origin='S00120' so_name='S00120'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=26,400.00 INV=26,400.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 206, 'qty': 10.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 206, 'qty': 10.0, 'price_unit': 1548.3}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6451] expected=0.6451 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=24,000.00 PO_untax=14,075.00 untax_ratio=0.5865 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-06) <= SO(2026-04-06) ? True; SO(2026-04-06) <= INV(2026-04-07) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-06 09:30:00 PO=2026-04-07 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=26,400.00 SO=26,400.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=400 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=103 type=opportunity partner=650"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=121 state=sale opp=103 expected=103"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=114 state=posted so.invoice_ids=[114]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=51 state=purchase origin='S00121' so_name='S00121'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=132,000.00 INV=132,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 206, 'qty': 50.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 206, 'qty': 50.0, 'price_unit': 1581.92}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6591] expected=0.6591 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=120,000.00 PO_untax=71,905.00 untax_ratio=0.5992 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-25) <= SO(2026-03-26) ? True; SO(2026-03-26) <= INV(2026-03-27) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-26 09:30:00 PO=2026-03-28 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=132,000.00 SO=132,000.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=401 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=104 type=opportunity partner=650"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=122 state=sale opp=104 expected=104"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=115 state=posted so.invoice_ids=[115]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=52 state=purchase origin='S00122' so_name='S00122'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=5,280.00 INV=5,280.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 233, 'qty': 2.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 233, 'qty': 2.0, 'price_unit': 1592.56}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6636] expected=0.6636 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=4,800.00 PO_untax=2,895.00 untax_ratio=0.6031 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-03) <= SO(2026-04-05) ? True; SO(2026-04-05) <= INV(2026-04-06) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-05 09:30:00 PO=2026-04-06 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=5,280.00 SO=5,280.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=402 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=105 type=opportunity partner=651"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=123 state=sale opp=105 expected=105"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=116 state=posted so.invoice_ids=[116]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=53 state=purchase origin='S00123' so_name='S00123'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=13,200.00 INV=13,200.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 233, 'qty': 5.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 233, 'qty': 5.0, 'price_unit': 1491.05}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6213] expected=0.6213 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=12,000.00 PO_untax=6,777.00 untax_ratio=0.5647 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-26) <= SO(2026-03-26) ? True; SO(2026-03-26) <= INV(2026-03-27) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-26 09:30:00 PO=2026-03-27 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=13,200.00 SO=13,200.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=403 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=106 type=opportunity partner=651"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=124 state=sale opp=106 expected=106"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=117 state=posted so.invoice_ids=[117]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=54 state=purchase origin='S00124' so_name='S00124'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=52,800.00 INV=52,800.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 172, 'qty': 20.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 172, 'qty': 20.0, 'price_unit': 1628.84}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6787] expected=0.6787 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=48,000.00 PO_untax=29,615.00 untax_ratio=0.6170 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-04-06) <= SO(2026-04-07) ? True; SO(2026-04-07) <= INV(2026-04-08) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-04-07 09:30:00 PO=2026-04-09 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=52,800.00 SO=52,800.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=404 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=107 type=opportunity partner=652"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=125 state=sale opp=107 expected=107"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=118 state=posted so.invoice_ids=[118]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=55 state=purchase origin='S00125' so_name='S00125'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=26,400.00 INV=26,400.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 172, 'qty': 10.0, 'price_unit': 2400.0}] PO_lines=[{'product_id': 172, 'qty': 10.0, 'price_unit': 1536.37}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6402] expected=0.6402 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=24,000.00 PO_untax=13,967.00 untax_ratio=0.5820 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-23) <= SO(2026-03-25) ? True; SO(2026-03-25) <= INV(2026-03-26) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-25 09:30:00 PO=2026-03-26 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=26,400.00 SO=26,400.00"
+      }
+    ],
+    [
+      {
+        "check": "mail.mail exists+sent",
+        "ok": true,
+        "detail": "id=405 state=sent"
+      },
+      {
+        "check": "crm.lead exists+opportunity+partner",
+        "ok": true,
+        "detail": "id=108 type=opportunity partner=652"
+      },
+      {
+        "check": "sale.order exists+state=sale+opportunity match",
+        "ok": true,
+        "detail": "id=126 state=sale opp=108 expected=108"
+      },
+      {
+        "check": "account.move exists+posted+linked to SO.invoice_ids",
+        "ok": true,
+        "detail": "id=119 state=posted so.invoice_ids=[119]"
+      },
+      {
+        "check": "purchase.order exists+state=purchase+origin match",
+        "ok": true,
+        "detail": "id=56 state=purchase origin='S00126' so_name='S00126'"
+      },
+      {
+        "check": "SO.amount_total == invoice.amount_total",
+        "ok": true,
+        "detail": "SO=24,000.00 INV=24,000.00 diff=0.00"
+      },
+      {
+        "check": "PO.qty == SO.qty per line (and product_id match)",
+        "ok": true,
+        "detail": "SO_lines=[{'product_id': 241, 'qty': 20.0, 'price_unit': 1200.0}] PO_lines=[{'product_id': 241, 'qty': 20.0, 'price_unit': 749.71}]"
+      },
+      {
+        "check": "PO.price_unit / SO.price_unit in [0.60, 0.70] per line",
+        "ok": true,
+        "detail": "per_line_ratios=[0.6248] expected=0.6248 match=True"
+      },
+      {
+        "check": "[info] PO.amount_untaxed / SO.amount_untaxed in extended band [0.54, 0.70]",
+        "ok": true,
+        "detail": "SO_untax=24,000.00 PO_untax=14,994.00 untax_ratio=0.6248 (TI/TE 비대칭 — docs/99-verification.md §8 참조)"
+      },
+      {
+        "check": "chronology: lead.create <= SO.date_order <= invoice.invoice_date",
+        "ok": true,
+        "detail": "lead(2026-03-30) <= SO(2026-03-30) ? True; SO(2026-03-30) <= INV(2026-03-31) ? True"
+      },
+      {
+        "check": "chronology: SO.date_order <= PO.date_order",
+        "ok": true,
+        "detail": "SO=2026-03-30 09:30:00 PO=2026-03-31 09:30:00"
+      },
+      {
+        "check": "crm.lead.expected_revenue == SO.amount_total",
+        "ok": true,
+        "detail": "lead=24,000.00 SO=24,000.00"
+      }
+    ]
+  ]
+}
