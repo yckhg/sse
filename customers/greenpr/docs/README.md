@@ -30,8 +30,8 @@ chronology backfill (`create_date`/`date_order`) 은 magic column 특성상 SQL 
 
 ## 2. 스크립트 인덱스
 
-전부 `customers/greenpr/scripts/` 안. **stdlib 만** 사용 (pip 금지). 개별 스크립트는 단일
-스토리에 1:1 대응. US-011 통합 스크립트는 추후 작성 예정.
+개별 스테이지 스크립트는 `customers/greenpr/scripts/` 안. **stdlib 만** 사용 (pip 금지). 각
+스크립트는 단일 스토리에 1:1 대응.
 
 | 스크립트 | 역할 | 주요 옵션 |
 |----------|------|-----------|
@@ -43,6 +43,22 @@ chronology backfill (`create_date`/`date_order`) 은 magic column 특성상 SQL 
 | `create_invoices.py` | US-008 account.move 22건 + post | `--dry-run --skip-post --skip-narration` |
 | `create_purchase_orders.py` | US-009 purchase.order 22건 + confirm | `--dry-run --skip-confirm` |
 | `verify_flow.py` | **US-010 정합성 검증 (264 체크)** | `--no-write --tolerance T` |
+
+통합 오케스트레이터는 repo 루트 `sse/scripts/` 에 있음 — 테넌트만 바꿔 위 5개를 subprocess 로
+순차 호출:
+
+| 스크립트 | 역할 | 주요 옵션 |
+|----------|------|-----------|
+| `sse/scripts/generate-full-flow.py` | **US-011** 5단계 오케스트레이션 + execution-log | `--tenant --dry-run --days-back --flows-per-partner --only --start-from --stop-on-error` |
+
+```bash
+# greenpr 전체 플로우 dry-run
+python3 scripts/generate-full-flow.py --tenant greenpr --dry-run
+# live (idempotent; 이미 생성된 레코드는 전부 skip)
+python3 scripts/generate-full-flow.py --tenant greenpr
+# 특정 스테이지만 (예: 청구서만 재시도)
+python3 scripts/generate-full-flow.py --tenant greenpr --only invoice
+```
 
 실행 (호스트 게이트웨이 경유):
 ```bash
