@@ -1,0 +1,215 @@
+{
+  "target_partners": [
+    {
+      "partner_id": 492,
+      "partner_name": "피알원",
+      "email": "zcbm0991@naver.com",
+      "phone": "+82 10-8698-1235",
+      "is_company": true,
+      "last_order_date": "2026-03-23",
+      "recent_orders": 1,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-04-02",
+        "2026-04-14"
+      ]
+    },
+    {
+      "partner_id": 493,
+      "partner_name": "모나용평",
+      "email": "zcbm0991@naver.com",
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 3,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-27",
+        "2026-04-13"
+      ]
+    },
+    {
+      "partner_id": 567,
+      "partner_name": "아리기획",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 1,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-25",
+        "2026-04-10"
+      ]
+    },
+    {
+      "partner_id": 575,
+      "partner_name": "사직나눔재단",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 3,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-24",
+        "2026-04-01"
+      ]
+    },
+    {
+      "partner_id": 576,
+      "partner_name": "일곡문화재단",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 2,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-26",
+        "2026-04-08"
+      ]
+    },
+    {
+      "partner_id": 594,
+      "partner_name": "WJ바이오",
+      "email": "HYJ@ycgroup.co.kr",
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-04-16",
+      "recent_orders": 9,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-04-10",
+        "2026-04-14"
+      ]
+    },
+    {
+      "partner_id": 647,
+      "partner_name": "무브멘토",
+      "email": "movement_orr@naver.com",
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 4,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-27",
+        "2026-04-08"
+      ]
+    },
+    {
+      "partner_id": 649,
+      "partner_name": "일곡문화재단 PLA 현수막",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-19",
+      "recent_orders": 1,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-24",
+        "2026-04-06"
+      ]
+    },
+    {
+      "partner_id": 650,
+      "partner_name": "동물자유연대",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-20",
+      "recent_orders": 2,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-25",
+        "2026-04-03"
+      ]
+    },
+    {
+      "partner_id": 651,
+      "partner_name": "경기환경에너지진흥원",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-19",
+      "recent_orders": 1,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-26",
+        "2026-04-06"
+      ]
+    },
+    {
+      "partner_id": 652,
+      "partner_name": "모나용평",
+      "email": null,
+      "phone": null,
+      "is_company": true,
+      "last_order_date": "2026-03-19",
+      "recent_orders": 1,
+      "target_new_orders": 2,
+      "planned_dates": [
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    }
+  ],
+  "day_matrix": {
+    "2026-03-23": [
+      "모나용평"
+    ],
+    "2026-03-24": [
+      "사직나눔재단",
+      "일곡문화재단 PLA 현수막"
+    ],
+    "2026-03-25": [
+      "아리기획",
+      "동물자유연대"
+    ],
+    "2026-03-26": [
+      "일곡문화재단",
+      "경기환경에너지진흥원"
+    ],
+    "2026-03-27": [
+      "모나용평",
+      "무브멘토"
+    ],
+    "2026-03-30": [
+      "모나용평"
+    ],
+    "2026-04-01": [
+      "사직나눔재단"
+    ],
+    "2026-04-02": [
+      "피알원"
+    ],
+    "2026-04-03": [
+      "동물자유연대"
+    ],
+    "2026-04-06": [
+      "경기환경에너지진흥원",
+      "일곡문화재단 PLA 현수막"
+    ],
+    "2026-04-08": [
+      "무브멘토",
+      "일곡문화재단"
+    ],
+    "2026-04-10": [
+      "WJ바이오",
+      "아리기획"
+    ],
+    "2026-04-13": [
+      "모나용평"
+    ],
+    "2026-04-14": [
+      "WJ바이오",
+      "피알원"
+    ]
+  },
+  "window": {
+    "start": "2026-03-17",
+    "end": "2026-04-16"
+  },
+  "total_flows_planned": 22
+}
