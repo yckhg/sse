@@ -157,7 +157,8 @@ def build_body_html(
 
 
 def already_exists(cli: OdooClient, marker_val: str) -> list[int]:
-    needle = f"{MARKER_PREFIX}{marker_val}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    needle = f"{MARKER_PREFIX}{marker_val} -->"
     return cli.search("mail.mail", [["body_html", "like", needle]])
 
 

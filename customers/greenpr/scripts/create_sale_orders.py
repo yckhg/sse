@@ -65,15 +65,16 @@ def so_marker(partner_id: int, planned_date: str) -> str:
 
 
 def so_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{so_marker(partner_id, planned_date)}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    return f"{MARKER_PREFIX}{so_marker(partner_id, planned_date)} -->"
 
 
 def lead_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{TENANT_KEY}:{LEAD_MARKER_NS}:{partner_id}:{planned_date}"
+    return f"{MARKER_PREFIX}{TENANT_KEY}:{LEAD_MARKER_NS}:{partner_id}:{planned_date} -->"
 
 
 def inquiry_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{TENANT_KEY}:{partner_id}:{planned_date}"
+    return f"{MARKER_PREFIX}{TENANT_KEY}:{partner_id}:{planned_date} -->"
 
 
 def fetch_product_prices(cli: OdooClient, product_ids: list[int]) -> dict[int, dict]:

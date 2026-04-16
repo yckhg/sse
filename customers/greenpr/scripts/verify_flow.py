@@ -59,7 +59,8 @@ INV_MARKER_NS = "inv"
 
 
 def inv_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{TENANT_KEY}:{INV_MARKER_NS}:{partner_id}:{planned_date}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    return f"{MARKER_PREFIX}{TENANT_KEY}:{INV_MARKER_NS}:{partner_id}:{planned_date} -->"
 
 
 def find_one(cli: OdooClient, model: str, field: str, needle: str) -> int | None:
