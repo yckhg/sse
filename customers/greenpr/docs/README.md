@@ -97,7 +97,56 @@ mail.mail 384..405  ↔  crm.lead 87..108  ↔  sale.order 105..126
 
 ---
 
-## 4. 실행 순서 (전체 재구성)
+## 4. 스테이지 규약 (Stage Convention)
+
+5개 스테이지 스크립트(`send_inquiries.py`, `create_leads.py`, `create_sale_orders.py`,
+`create_invoices.py`, `create_purchase_orders.py`)는 오케스트레이터
+(`sse/scripts/generate-full-flow.py`)가 일관된 방식으로 소비할 수 있도록 아래 규약을 따른다.
+신규 스테이지 스크립트를 추가하거나 기존 스크립트를 수정할 때 반드시 본 규약을 지켜야 한다.
+
+### 4.1 `[summary]` 출력 의무
+
+live 모드(`--dry-run` 미지정)에서는 종료 직전 반드시 아래 형식의 한 줄을 stdout 에 출력한다.
+
+```
+[summary] created=<n> [confirmed=<n> | posted=<n> | backfilled=<n>] skipped=<n> total=<n>
+```
+
+- 각 flow 는 반드시 어느 한 버킷에 카운트되어야 한다 — `created + (confirmed|posted|backfilled
+  에 포함되지 않은) skipped` 합산이 `total` 과 맞아야 한다. 조용히 `continue` 하는 분기가
+  있다면 해당 flow 를 `skipped` 로 카운트한다 ("silent continue" 금지).
+- dry-run 모드는 의도적으로 `[summary]` 를 생략한다(plan 출력만). 오케스트레이터는 이
+  부재를 무시한다(US-004 가드).
+- live 모드에서 `[summary]` 가 누락되면 오케스트레이터가 stderr 에
+  `WARN: stage <name> completed rc=0 but no [summary] line emitted` 를 출력하며,
+  `--strict-summary` 결합 시 해당 스테이지를 실패로 취급한다.
+
+### 4.2 rc 기준표
+
+| rc | 의미 | 예시 |
+|----|------|------|
+| 0 | 성공(작업량 0건·빈 풀 케이스 포함) | 정상 종료, 빈 vendor pool, limit=0 |
+| 1 | 복구 불가 실패 | RPC 인증 실패, 위저드 create 실패, SQL 백필 실패 |
+| 2 | 입력 오류 | argparse 검증 실패(`container_name_arg`), 필수 json 파일 부재 |
+
+`argparse.ArgumentTypeError` / `SystemExit(2)` 는 argparse 가 자동 처리하므로 별도 분기 불요.
+복구 불가 실패는 stderr 에 `[ERR] ...` 로 사유 기록 후 rc=1 로 종료.
+
+### 4.3 빈 풀(empty pool) 처리
+
+"빈 풀" = 대상 목록이 0건(예: vendor pool 0건, partner pool 0건, flows 0건). 이 경우:
+
+1. stderr 에 `[WARN] <pool> empty — 0 work` 형식으로 경고 출력.
+2. stdout 에 `[summary] created=0 ... skipped=<total> total=<total>` 출력(total=0 포함 가능).
+3. rc=0 으로 종료.
+
+**rc=2 를 던지지 말 것** — rc=2 는 "입력 오류" 이며 빈 풀은 정상적으로 발생 가능한 런타임
+상태다. 오케스트레이터의 `--stop-on-error` 와 `--strict-summary` 둘 다 이 케이스를 실패로
+간주하지 않아야 한다.
+
+---
+
+## 5. 실행 순서 (전체 재구성)
 
 ```bash
 cd /home/yc/projects/sse
@@ -123,28 +172,28 @@ ODOO_URL=http://localhost:30033 python3 customers/greenpr/scripts/verify_flow.py
 
 ---
 
-## 5. 다른 테넌트 적용 가이드
+## 6. 다른 테넌트 적용 가이드
 
 본 자동화를 `mediapolytech / visualoft / jnj_i / freeworks` 등 다른 테넌트에 적용할 때
 **반드시 재확인** 해야 할 항목.
 
-### 5.1 환경 (US-001)
+### 6.1 환경 (US-001)
 - DB/Web 컨테이너 이름: `ycerp-{db|web}-<tenant>`
 - 게이트웨이 포트: greenpr=30033, mediapolytech=30043, visualoft=30053, jnj_i=30063, freeworks=30073
 - `customers/<tenant>/full_db_backup.sql` 존재 여부 확인. 없으면 먼저 생성
 - Odoo 버전/모듈 동일 가정 검증 — 특히 `sale, purchase, account, crm, mail, website` 설치 확인
 
-### 5.2 파트너 풀 (US-002)
+### 6.2 파트너 풀 (US-002)
 - `sale.order.date_order >= today - 30d` 쿼리는 그대로 재사용 가능
 - 윈도우(다음 거래까지 가용 일수) 가 0 이하인 파트너 fallback 로직(7일 역산) 그대로 유효
 - `target-partners.json` 만 재생성하면 후속 스크립트는 자동 재사용
 
-### 5.3 제품 풀 (US-003)
+### 6.3 제품 풀 (US-003)
 - `product.product` 의 `sale_ok` ≠ `purchase_ok` 가능성 — 다른 테넌트에선 별도 풀 필요할 수 있음 (greenpr 은 172=172)
 - `default_code` 가 비어있으면 id 기반 식별로 표준화
 - `recent_top_products` 가 9개 미만이면 sample fallback (이미 `load_products` 에 분기 존재)
 
-### 5.4 제3자 패치 (US-007 Studio 버그)
+### 6.4 제3자 패치 (US-007 Studio 버그)
 - greenpr 한정: `stock.move.x_studio_monetary_field_9fa_1jkcl88h2` (ir.model.fields id=27312) compute KeyError 패치 필요
 - 다른 테넌트는 다음 쿼리로 선제 점검:
   ```sql
@@ -153,27 +202,28 @@ ODOO_URL=http://localhost:30033 python3 customers/greenpr/scripts/verify_flow.py
   ```
 - 같은 증상 발견 시 동일 self-assign 패턴으로 패치
 
-### 5.5 메일 / 발신 정책 (US-005)
+### 6.5 메일 / 발신 정책 (US-005)
 - 외부 SMTP 실제 발송 회피를 위해 `state='sent'` 수동 마킹 — 모든 테넌트 공통 OK
 - internal 수신 주소(`mail_server.smtp_user`) 가 다름 — 테넌트별 적용 시 `INTERNAL_TO` 상수 변경
 
-### 5.6 벤더 풀 (US-009)
+### 6.6 벤더 풀 (US-009)
 - 잡음 이름 필터(`is_company=True + parent_id=False + supplier_rank>0`) 후 풀 크기 확인
-- 풀 크기 0 이면 스크립트 abort (PRD AC "벤더 없으면 건너뛰고 기록")
+- 풀 크기 0 이면 §4.3 "빈 풀 처리 규약" 에 따라 WARN + rc=0 + `[summary] ... skipped=<total>`
+  — 오케스트레이터는 스테이지 실패로 간주하지 않음
 - VENDOR_POOL_FALLBACK 상수를 테넌트별 ID 로 교체
 
-### 5.7 부가세 setup (US-010 §8)
+### 6.7 부가세 setup (US-010 §8)
 - greenpr 의 sale/purchase 10% TI 가 price_include 정책이 다름 → untax_ratio 가 ~5% 낮아짐
 - 다른 테넌트는 `account_tax.price_include_override` 양쪽 통일하면 untax 비율도 일치
 - 정합성 1차 기준은 line-level **price_unit 비율** — 항상 통과해야 함
 
-### 5.8 회계 저널 (US-008)
+### 6.8 회계 저널 (US-008)
 - greenpr 은 sales 저널 1개라 위저드가 자동 선택 → 다른 테넌트는 multi-journal 가능
 - 필요 시 `create_invoices.py` 에 `--journal-id` 옵션 추가
 
 ---
 
-## 6. 데모 데이터 정리
+## 7. 데모 데이터 정리
 
 데모 데이터를 모두 지우려면 (운영 데이터는 유지):
 
@@ -202,7 +252,7 @@ SQL
 
 ---
 
-## 7. CI/게이트 활용
+## 8. CI/게이트 활용
 
 `scripts/verify_flow.py` 는 exit code 로 게이트 가능:
 

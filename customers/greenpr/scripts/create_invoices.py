@@ -237,9 +237,11 @@ def main() -> int:
         so2 = cli.read("sale.order", [so_id], ["invoice_ids"])[0]
         new_ids = [i for i in so2["invoice_ids"] if i not in before_ids]
         if not new_ids:
+            # 스테이지 규약 §4.1: silent continue 금지 — skipped 로 카운트해 [summary] 합계 정합.
             print(f"  [ERR] wizard ran but no new invoice for SO {so['name']}", file=sys.stderr)
             log_rows.append({**f, "so_id": so_id, "so_name": so["name"],
                              "status": "create_failed", "marker": marker})
+            skipped += 1
             continue
         inv_id = new_ids[0]
         created += 1

@@ -193,8 +193,18 @@ def main() -> int:
     )
 
     if not vendor_pool:
-        print("[ERR] vendor pool empty (supplier_rank>0 partners 없음). aborting.", file=sys.stderr)
-        return 2
+        # 스테이지 규약 §4.3: 빈 풀 → WARN + rc=0 + [summary] 출력.
+        # rc=2 는 입력 오류용(argparse 등)이며, 빈 vendor pool 은 정상 발생 가능한 런타임
+        # 상태라 스테이지 실패로 간주하지 않는다.
+        print(
+            "[WARN] vendor pool empty (supplier_rank>0 partners 없음) — 0 work",
+            file=sys.stderr,
+        )
+        if not args.dry_run:
+            print(
+                f"[summary] created=0 confirmed=0 skipped={len(flows)} total={len(flows)}"
+            )
+        return 0
 
     if args.dry_run:
         for idx, f in enumerate(flows):
