@@ -40,6 +40,7 @@ from odoo_client import OdooClient  # noqa: E402
 from send_inquiries import (  # noqa: E402  동일 plan 재사용 → mail.mail ↔ lead ↔ SO 1:1
     MARKER_PREFIX,
     TENANT_KEY,
+    container_name_arg,
     find_docs_path,
     load_partners,
     load_products,
@@ -186,7 +187,9 @@ def main() -> int:
     ap.add_argument("--skip-lead-write", action="store_true")
     ap.add_argument("--skip-backfill", action="store_true",
                     help="action_confirm 직후 date_order SQL UPDATE 생략 (디버깅용)")
-    ap.add_argument("--db-container", default=DEFAULT_DB_CONTAINER)
+    ap.add_argument(
+        "--db-container", default=DEFAULT_DB_CONTAINER, type=container_name_arg,
+    )
     ap.add_argument("--partners-json", type=Path, default=None)
     ap.add_argument("--products-json", type=Path, default=None)
     ap.add_argument(
