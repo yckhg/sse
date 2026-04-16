@@ -14,7 +14,9 @@
     'version': '19.0.1.0.0',
     'license': 'LGPL-3',
     'depends': ['crm', 'mail', 'website_crm'],
-    'data': [],
+    'data': [
+        'data/mail_template.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
