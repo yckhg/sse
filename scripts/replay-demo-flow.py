@@ -238,14 +238,18 @@ def run_stage(
             "docker", "exec", "-i",
             "-e", f"ODOO_URL={in_container_url}",
             "-e", f"ODOO_DB={env.get('ODOO_DB', 'odoo')}",
-            "-e", f"ODOO_LOGIN={env.get('ODOO_LOGIN', 'admin')}",
-            "-e", f"ODOO_PASSWORD={env.get('ODOO_PASSWORD', 'admin')}",
+            "-e", f"ODOO_LOGIN={env['ODOO_LOGIN']}",
+            "-e", f"ODOO_PASSWORD={env['ODOO_PASSWORD']}",
             "-e", "PYTHONUNBUFFERED=1",
             cfg.web,
             "python3", f"{container_dir}/{script_name}",
             *extra,
         ]
-        print("$ " + " ".join(cmd), flush=True)
+        display_cmd = [
+            "ODOO_PASSWORD=***" if c.startswith("ODOO_PASSWORD=") else c
+            for c in cmd
+        ]
+        print("$ " + " ".join(display_cmd), flush=True)
         proc = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
@@ -375,9 +379,18 @@ def main(argv: list[str] | None = None) -> int:
     env = os.environ.copy()
     env.setdefault("ODOO_URL", cfg.odoo_url)
     env.setdefault("ODOO_DB", "odoo")
-    env.setdefault("ODOO_LOGIN", "admin")
-    env.setdefault("ODOO_PASSWORD", "admin")
     env["PYTHONUNBUFFERED"] = "1"
+    missing = [k for k in ("ODOO_LOGIN", "ODOO_PASSWORD") if not env.get(k)]
+    if missing:
+        print(
+            f"[error] required env vars not set: {', '.join(missing)}",
+            file=sys.stderr,
+        )
+        print(
+            "        export ODOO_LOGIN and ODOO_PASSWORD before running this script.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
 
     container_dir: str | None = None
     if args.exec_mode == "container":
