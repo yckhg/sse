@@ -63,6 +63,40 @@ MARKER_PREFIX = "SMOKE-"
 REQUIRED_BODY_LITERAL = "견적 문의"
 VALID_MAIL_STATES = ("sent", "outgoing")
 
+AUTOMATION_MODULE = "greenpr_form_automation"
+AUTOMATION_XMLID_NAME = "automation_lead_inquiry_email"
+AUTOMATION_NOT_FOUND_MSG = (
+    f"base.automation not found ({AUTOMATION_MODULE} module installed?)"
+)
+
+
+def _describe_automation(cli: OdooClient) -> str:
+    """Resolve the greenpr_form_automation.automation_lead_inquiry_email XML-ID
+    to a human-readable "base.automation id=<n> ('<name>')" descriptor for use
+    in failure messages. Returns AUTOMATION_NOT_FOUND_MSG if the module is not
+    installed or the lookup fails for any reason.
+    """
+    try:
+        imd = cli.search_read(
+            "ir.model.data",
+            [
+                ("module", "=", AUTOMATION_MODULE),
+                ("name", "=", AUTOMATION_XMLID_NAME),
+                ("model", "=", "base.automation"),
+            ],
+            ["res_id"],
+            limit=1,
+        )
+        if not imd:
+            return AUTOMATION_NOT_FOUND_MSG
+        rec_id = int(imd[0]["res_id"])
+        rows = cli.read("base.automation", [rec_id], ["name"])
+        if not rows:
+            return AUTOMATION_NOT_FOUND_MSG
+        return f"base.automation id={rec_id} ({rows[0].get('name')!r})"
+    except Exception:
+        return AUTOMATION_NOT_FOUND_MSG
+
 
 def _build_marker() -> str:
     return f"{MARKER_PREFIX}{int(time.time() * 1000)}"
@@ -359,11 +393,11 @@ def main() -> int:
             f"subject={(m.get('subject') or '')!r} email_to={m.get('email_to')!r}"
         )
     if our_mail is None:
+        automation_desc = _describe_automation(cli)
         print(
             f"  FAIL: no mail.mail whose body_html contains {REQUIRED_BODY_LITERAL!r} — "
-            "our mail.template did not render. Check that base.automation id=5 "
-            "('Greenpr: Website Lead 견적 문의 자동 메일') is active and that the "
-            "mail_template_lead_inquiry body still includes the literal."
+            f"our mail.template did not render. Check that {automation_desc} "
+            "is active and that the mail_template_lead_inquiry body still includes the literal."
         )
         if not args.no_cleanup:
             _cleanup_by_marker(cli, marker)
