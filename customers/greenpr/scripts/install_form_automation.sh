@@ -21,7 +21,8 @@ echo "Tenant dir: $TENANT_DIR"
 
 # 1) DB에서 현재 모듈 상태 조회 (row가 없으면 빈 문자열)
 STATE="$(docker exec "$DB_CONTAINER" psql -U odoo -d "$DB_NAME" -tA \
-  -c "SELECT state FROM ir_module_module WHERE name='$MODULE'" 2>/dev/null | tr -d '[:space:]' || true)"
+  -v module="$MODULE" \
+  -c "SELECT state FROM ir_module_module WHERE name=:'module'" 2>/dev/null | tr -d '[:space:]' || true)"
 
 if [ "$STATE" = "installed" ]; then
   ACTION="-u"
@@ -74,7 +75,8 @@ for i in $(seq 1 30); do
 done
 
 FINAL_STATE="$(docker exec "$DB_CONTAINER" psql -U odoo -d "$DB_NAME" -tA \
-  -c "SELECT state FROM ir_module_module WHERE name='$MODULE'" 2>/dev/null | tr -d '[:space:]' || true)"
+  -v module="$MODULE" \
+  -c "SELECT state FROM ir_module_module WHERE name=:'module'" 2>/dev/null | tr -d '[:space:]' || true)"
 
 echo "ir_module_module.state='$FINAL_STATE'"
 if [ "$FINAL_STATE" = "installed" ]; then
