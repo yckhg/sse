@@ -50,6 +50,7 @@ chronology backfill (`create_date`/`date_order`) 은 magic column 특성상 SQL 
 | 스크립트 | 역할 | 주요 옵션 |
 |----------|------|-----------|
 | `sse/scripts/generate-full-flow.py` | **US-011** 5단계 오케스트레이션 + execution-log | `--tenant --dry-run --days-back --flows-per-partner --only --start-from --stop-on-error` |
+| `sse/scripts/replay-demo-flow.py`   | **PRD-3 US-005** demo replay 오케스트레이션(cleanup + replay + verify) + execution-log | `--tenant --dry-run --exec-mode {container,host} --stop-on-error/--no-stop-on-error --log-dir` |
 
 ```bash
 # greenpr 전체 플로우 dry-run
@@ -59,6 +60,38 @@ python3 scripts/generate-full-flow.py --tenant greenpr
 # 특정 스테이지만 (예: 청구서만 재시도)
 python3 scripts/generate-full-flow.py --tenant greenpr --only invoice
 ```
+
+### 2a. Replay demo flow (PRD-3)
+
+`ralph-demo-flow` 마커가 붙은 기존 22 mail.mail(수동 state='sent' 고아 레코드) 을 지우고,
+22 crm.lead 에 `greenpr_form_automation.mail_template_lead_inquiry` 템플릿을 `force_send=True`
+로 재전송하여 **실제 SMTP 발송 + crm.lead ↔ mail.mail 연결** 을 복구하는 오케스트레이터.
+
+실행 순서: `cleanup_demo_mails.py` → `replay_demo_leads.py` → `verify_demo_replay.py`.
+
+```bash
+cd /home/yc/projects/sse
+
+# dry-run — 실제 cleanup/send 없이 각 단계 plan 만 출력. verify 는 --no-write.
+python3 scripts/replay-demo-flow.py --tenant greenpr --dry-run
+
+# live — 22건 cleanup + 22건 force_send + 5 검사.
+python3 scripts/replay-demo-flow.py --tenant greenpr
+
+# 중간 단계 실패 시에도 남은 단계 계속 시도 (기본은 --stop-on-error 로 중단).
+python3 scripts/replay-demo-flow.py --tenant greenpr --no-stop-on-error
+
+# 호스트 파이썬으로 직접 실행 (기본 container 모드가 docker 부재 환경에서 실패할 때).
+python3 scripts/replay-demo-flow.py --tenant greenpr --dry-run --exec-mode host
+```
+
+기본 `--exec-mode container` 는 스테이지 스크립트를 `docker cp` + `docker exec` 로 웹 컨테이너
+내부에서 실행하여 게이트웨이 XML-RPC 타임아웃을 회피한다. 실행 종료 시 임시 디렉터리
+(`/tmp/sse-replay-stage-<pid>`) 는 자동 제거.
+
+실행 이력은 `customers/<tenant>/docs/execution-log-<YYYY-MM-DD>.md` 에 append
+(`generate-full-flow.py` 와 같은 파일, 같은 표 구조. `created/deleted` 컬럼으로 cleanup/replay
+양쪽 카운트를 한 표에 표시).
 
 실행 (호스트 게이트웨이 경유):
 ```bash
