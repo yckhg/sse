@@ -23,6 +23,11 @@ This script:
      manual-fix message (web UI cannot be edited from a script — Odoo's
      website builder is the canonical place to switch actions).
 
+Return codes:
+  * 0 = OK (form action is "Create Opportunity")
+  * 1 = form action mismatch (manual fix required via website builder)
+  * 2 = connection/auth error (Odoo unreachable or credentials invalid)
+
 Run from the host (gateway port) or inside the container:
 
     python3 customers/greenpr/scripts/verify_contactus_form.py
@@ -97,7 +102,15 @@ def main() -> int:
     cli = OdooClient()
     print(f"target: url={cli.url} db={cli.db} login={cli.login}")
 
-    cli.authenticate()
+    try:
+        cli.authenticate()
+    except Exception as exc:
+        print(
+            f"[FAIL] Odoo 인증 실패: {exc} "
+            f"(url={cli.url} db={cli.db} login={cli.login})",
+            file=sys.stderr,
+        )
+        return 2
 
     pages = cli.search_read(
         "website.page",
