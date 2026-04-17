@@ -42,6 +42,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ../../odoo-19.0+e.20260101/odoo/addons:/usr/lib/python3/dist-packages/odoo/addons
       - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons:ro
     restart: always
     networks:
       - yc-network
