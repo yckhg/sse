@@ -11,10 +11,11 @@
     'author': 'SSE',
     'website': 'https://greenpr.online',
     'category': 'Sales/CRM',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'license': 'LGPL-3',
     'depends': ['crm', 'mail', 'website_crm', 'base_automation'],
     'data': [
+        'data/config_parameter.xml',
         'data/mail_template.xml',
         'data/automation.xml',
     ],

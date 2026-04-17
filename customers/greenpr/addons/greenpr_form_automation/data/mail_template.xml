@@ -7,7 +7,7 @@
             <field name="model_id" ref="crm.model_crm_lead"/>
             <field name="subject">[문의] {{ object.name or '제목없음' }} 견적 문의 - {{ object.partner_name or object.contact_name or '방문자' }}</field>
             <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
-            <field name="email_to">greenpr9@gmail.com</field>
+            <field name="email_to">{{ (env['ir.config_parameter'].sudo().get_param('greenpr_form_automation.inquiry_recipient') or 'greenpr9@gmail.com') }}</field>
             <field name="auto_delete" eval="False"/>
             <field name="description">greenpr 웹사이트 /contactus 폼 유입 crm.lead 생성 시 greenpr9@gmail.com 으로 발송되는 견적 문의 알림 템플릿.</field>
             <field name="body_html" type="html">
