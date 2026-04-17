@@ -29,6 +29,7 @@ import datetime as dt
 import html
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -40,6 +41,7 @@ from send_inquiries import (  # noqa: E402  US-005 와 동일 plan 재사용
     FALLBACK_FROM,
     MARKER_PREFIX,
     TENANT_KEY,
+    container_name_arg,
     find_docs_path,
     load_partners,
     load_products,
@@ -60,11 +62,12 @@ def lead_marker(partner_id: int, planned_date: str) -> str:
 
 
 def inquiry_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{TENANT_KEY}:{partner_id}:{planned_date}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    return f"{MARKER_PREFIX}{TENANT_KEY}:{partner_id}:{planned_date} -->"
 
 
 def lead_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{lead_marker(partner_id, planned_date)}"
+    return f"{MARKER_PREFIX}{lead_marker(partner_id, planned_date)} -->"
 
 
 def fetch_product_prices(cli: OdooClient, product_ids: list[int]) -> dict[int, dict]:
@@ -135,31 +138,43 @@ def build_lead_vals(flow: dict, partner: dict, mail_id: int | None) -> dict:
     }
 
 
+_TS_RE = re.compile(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$")
+
+
 def backfill_create_date(
     db_container: str, lead_to_dt: dict[int, str]
 ) -> None:
     """방금 만든 lead id 화이트리스트만 SQL UPDATE 로 create_date 보정.
 
     lead_to_dt: {lead_id: 'YYYY-MM-DD HH:MM:SS' (UTC)}
+
+    안전성: SQL literal 문자열 보간 대신 COPY FROM STDIN + TEMP 테이블로
+    데이터를 SQL과 분리한다. id/ts 값은 엄격히 검증한다.
     """
     if not lead_to_dt:
         return
-    when_clauses = " ".join(
-        f"WHEN {lid} THEN TIMESTAMP '{ts}'" for lid, ts in lead_to_dt.items()
-    )
-    ids_csv = ",".join(str(lid) for lid in lead_to_dt)
-    sql = (
-        "UPDATE crm_lead SET "
-        f"create_date = CASE id {when_clauses} END, "
-        f"write_date  = CASE id {when_clauses} END, "
-        f"date_open   = CASE id {when_clauses} END "
-        f"WHERE id IN ({ids_csv})"
+    data_lines: list[str] = []
+    for lid, ts in lead_to_dt.items():
+        if not isinstance(lid, int):
+            raise ValueError(f"lead id must be int, got {lid!r}")
+        if not _TS_RE.match(ts):
+            raise ValueError(f"invalid timestamp literal: {ts!r}")
+        data_lines.append(f"{lid}\t{ts}")
+    sql_script = (
+        "BEGIN;\n"
+        "CREATE TEMP TABLE _backfill_ts (id bigint PRIMARY KEY, ts timestamp NOT NULL) ON COMMIT DROP;\n"
+        "COPY _backfill_ts (id, ts) FROM STDIN;\n"
+        + "\n".join(data_lines) + "\n"
+        "\\.\n"
+        "UPDATE crm_lead l SET create_date = b.ts, write_date = b.ts, date_open = b.ts\n"
+        "FROM _backfill_ts b WHERE l.id = b.id;\n"
+        "COMMIT;\n"
     )
     cmd = [
         "docker", "exec", "-i", db_container,
-        "psql", "-U", "odoo", "-d", "odoo", "-v", "ON_ERROR_STOP=1", "-c", sql,
+        "psql", "-U", "odoo", "-d", "odoo", "-v", "ON_ERROR_STOP=1",
     ]
-    subprocess.run(cmd, check=True)
+    subprocess.run(cmd, input=sql_script, check=True, text=True)
 
 
 def main() -> int:
@@ -167,7 +182,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--skip-backfill", action="store_true")
-    ap.add_argument("--db-container", default=DEFAULT_DB_CONTAINER)
+    ap.add_argument(
+        "--db-container", default=DEFAULT_DB_CONTAINER, type=container_name_arg,
+    )
     ap.add_argument("--partners-json", type=Path, default=None)
     ap.add_argument("--products-json", type=Path, default=None)
     ap.add_argument(

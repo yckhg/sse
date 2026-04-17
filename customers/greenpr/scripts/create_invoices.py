@@ -57,7 +57,8 @@ def inv_marker(partner_id: int, planned_date: str) -> str:
 
 
 def inv_marker_needle(partner_id: int, planned_date: str) -> str:
-    return f"{MARKER_PREFIX}{inv_marker(partner_id, planned_date)}"
+    # 접미 ` -->` 를 포함해 HTML 주석 종단을 앵커 — `:1:...` 가 `:10:...` 에 섞이지 않는다.
+    return f"{MARKER_PREFIX}{inv_marker(partner_id, planned_date)} -->"
 
 
 def find_so_id(cli: OdooClient, partner_id: int, planned_date: str) -> int | None:
@@ -237,9 +238,11 @@ def main() -> int:
         so2 = cli.read("sale.order", [so_id], ["invoice_ids"])[0]
         new_ids = [i for i in so2["invoice_ids"] if i not in before_ids]
         if not new_ids:
+            # 스테이지 규약 §4.1: silent continue 금지 — skipped 로 카운트해 [summary] 합계 정합.
             print(f"  [ERR] wizard ran but no new invoice for SO {so['name']}", file=sys.stderr)
             log_rows.append({**f, "so_id": so_id, "so_name": so["name"],
                              "status": "create_failed", "marker": marker})
+            skipped += 1
             continue
         inv_id = new_ids[0]
         created += 1

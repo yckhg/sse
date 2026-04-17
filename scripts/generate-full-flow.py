@@ -31,6 +31,7 @@ import datetime as dt
 import os
 import subprocess
 import sys
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -107,6 +108,7 @@ class StageResult:
     created: int | None = None
     skipped: int | None = None
     total: int | None = None
+    summary_missing: bool = False
 
 
 def tail(text: str, lines: int = 40) -> str:
@@ -150,6 +152,8 @@ def run_stage(
     extra_args: list[str],
     dry_run: bool,
 ) -> StageResult:
+    # dry-run 은 의도적으로 [summary] 를 찍지 않는 스테이지 스크립트가 있어
+    # 누락 감지 대상에서 제외한다 (의도된 부재 vs 부분 크래시 구분).
     script_path = cfg.scripts_dir / script_name
     if not script_path.is_file():
         raise SystemExit(f"[err] stage script missing: {script_path}")
@@ -170,6 +174,9 @@ def run_stage(
     print(f"$ ODOO_URL={cfg.odoo_url} " + " ".join(cmd))
     t0 = time.time()
     # 스테이지 출력이 그대로 콘솔에 흘러나오도록 capture + mirror.
+    # stdout/stderr 를 각각 별도 스레드로 스트리밍 소비 — 한쪽 PIPE 버퍼(~64KB)가 포화되어
+    # 자식이 write 에서 블록되는 상황을 피한다. (예전엔 stdout 만 drain 하고 wait 후 stderr
+    # 를 read 했기 때문에 stderr 대량 로그 시 데드락 가능성이 있었음.)
     proc = subprocess.Popen(
         cmd,
         cwd=str(cfg.project_root),
@@ -179,23 +186,43 @@ def run_stage(
         text=True,
         bufsize=1,
     )
+    assert proc.stdout is not None and proc.stderr is not None
+
     stdout_lines: list[str] = []
     stderr_lines: list[str] = []
-    # 단순 순차 drain — 스테이지는 초 단위 실행이라 충분.
-    assert proc.stdout is not None and proc.stderr is not None
-    for line in proc.stdout:
-        sys.stdout.write(line)
-        stdout_lines.append(line)
+
+    def _pump(src, mirror, buf: list[str]) -> None:
+        for line in src:
+            mirror.write(line)
+            mirror.flush()
+            buf.append(line)
+        src.close()
+
+    t_out = threading.Thread(
+        target=_pump, args=(proc.stdout, sys.stdout, stdout_lines), daemon=True
+    )
+    t_err = threading.Thread(
+        target=_pump, args=(proc.stderr, sys.stderr, stderr_lines), daemon=True
+    )
+    t_out.start()
+    t_err.start()
     proc.wait()
-    if proc.stderr is not None:
-        stderr_lines = proc.stderr.read().splitlines(keepends=True)
-        for line in stderr_lines:
-            sys.stderr.write(line)
+    t_out.join()
+    t_err.join()
 
     duration = time.time() - t0
     stdout_full = "".join(stdout_lines)
     stderr_full = "".join(stderr_lines)
     created, skipped, total, summary_line = parse_summary(stdout_full)
+
+    summary_missing = (
+        proc.returncode == 0 and not summary_line and not dry_run
+    )
+    if summary_missing:
+        print(
+            f"WARN: stage {step} completed rc=0 but no [summary] line emitted",
+            file=sys.stderr,
+        )
 
     return StageResult(
         step=step,
@@ -209,6 +236,7 @@ def run_stage(
         created=created,
         skipped=skipped,
         total=total,
+        summary_missing=summary_missing,
     )
 
 
@@ -257,7 +285,10 @@ def write_execution_log(
     log_path.parent.mkdir(parents=True, exist_ok=True)
     header_needed = not log_path.exists()
 
-    all_ok = all(r.returncode == 0 for r in results)
+    all_ok = all(
+        r.returncode == 0 and not (args_ns.strict_summary and r.summary_missing)
+        for r in results
+    )
     status_str = "PASS" if all_ok else "FAIL"
     mode = "dry-run" if args_ns.dry_run else "live"
 
@@ -277,7 +308,8 @@ def write_execution_log(
         f"`--tenant {args_ns.tenant} --days-back {args_ns.days_back} "
         f"--flows-per-partner {args_ns.flows_per_partner}"
         f"{' --dry-run' if args_ns.dry_run else ''}"
-        f"{' --stop-on-error' if args_ns.stop_on_error else ''}`\n\n"
+        f"{' --stop-on-error' if args_ns.stop_on_error else ''}"
+        f"{' --strict-summary' if args_ns.strict_summary else ''}`\n\n"
     )
     out.append(
         f"**Target**: ODOO_URL={cfg.odoo_url}  web={cfg.web_container}  db={cfg.db_container}\n\n"
@@ -290,6 +322,10 @@ def write_execution_log(
     out.append("| step | label | rc | dur(s) | created | skipped | total | summary |\n")
     out.append("|---|---|---:|---:|---:|---:|---:|---|\n")
     for r in results:
+        if r.summary_missing:
+            summary_cell = "[summary] MISSING"
+        else:
+            summary_cell = (r.summary or "").replace("|", "\\|")
         out.append(
             "| {step} | {label} | {rc} | {dur:.2f} | {c} | {s} | {t} | `{sum}` |\n".format(
                 step=r.step,
@@ -299,7 +335,7 @@ def write_execution_log(
                 c="-" if r.created is None else r.created,
                 s="-" if r.skipped is None else r.skipped,
                 t="-" if r.total is None else r.total,
-                sum=(r.summary or "").replace("|", "\\|"),
+                sum=summary_cell,
             )
         )
 
@@ -340,7 +376,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     ap.add_argument("--start-from", choices=[s[0] for s in STAGES], default=None,
                     help="지정한 단계부터 끝까지 실행.")
     ap.add_argument("--stop-on-error", action="store_true",
-                    help="어느 단계라도 rc != 0 이면 즉시 중단 (기본: 전부 시도).")
+                    help="어느 단계라도 rc != 0 이면 즉시 중단 (기본: 전부 시도). "
+                         "--strict-summary 와 함께 쓰면 summary 누락도 중단 트리거.")
+    ap.add_argument("--strict-summary", action="store_true",
+                    help="rc=0 인데 [summary] 라인을 못 찍은 스테이지를 실패처럼 취급. "
+                         "--stop-on-error 와 결합 시 중단까지 유발.")
     ap.add_argument("--log-dir", type=Path, default=None,
                     help="execution-log 저장 디렉터리. 기본: customers/<tenant>/docs/")
     return ap.parse_args(argv)
@@ -391,16 +431,27 @@ def main(argv: list[str] | None = None) -> int:
             )
             if args.stop_on_error:
                 break
+        elif r.summary_missing and args.strict_summary:
+            print(
+                f"[stage-fail] step={r.step} summary missing (strict-summary) — "
+                f"{'중단' if args.stop_on_error else '다음 단계 계속 진행'}"
+            )
+            if args.stop_on_error:
+                break
     ended_at = dt.datetime.now()
 
     # ---- Summary ----
-    all_ok = all(r.returncode == 0 for r in results)
+    all_ok = all(
+        r.returncode == 0 and not (args.strict_summary and r.summary_missing)
+        for r in results
+    )
     print("\n========== [summary] ==========")
     print(f"tenant={cfg.tenant}  mode={mode}  status={'PASS' if all_ok else 'FAIL'}")
     for r in results:
+        summary_disp = "[summary] MISSING" if r.summary_missing else r.summary
         print(
             f"  {r.step:>7}  rc={r.returncode}  dur={r.duration_sec:6.2f}s  "
-            f"created={r.created}  skipped={r.skipped}  total={r.total}  | {r.summary}"
+            f"created={r.created}  skipped={r.skipped}  total={r.total}  | {summary_disp}"
         )
 
     try:
