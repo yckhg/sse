@@ -142,3 +142,4 @@ tasks/
 .mcp.json
 export_schema/
 결과보고서/
+*.pem
