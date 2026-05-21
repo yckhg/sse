@@ -11,7 +11,7 @@ TENANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODULE="greenpr_form_automation"
 DB_CONTAINER="ycerp-db-greenpr"
 WEB_CONTAINER="ycerp-web-greenpr"
-NGINX_CONTAINER="cetral-nginx"
+NGINX_CONTAINER="gateway"
 DB_NAME="odoo"
 
 cd "$TENANT_DIR"
