@@ -7,3 +7,4 @@
 ## 스펙 목록
 
 - [mcp-tenant-data-access.md](mcp-tenant-data-access.md) — MCP 테넌트 데이터 접근(읽기 전용): 사설 메시 도달성 · 읽기 전용 · 테넌트 범위 · 감사 계약 (Spec 1)
+  - 적합성 테스트: `tests/spec/mcp-tenant-data-access/` (단언 A~L, `spec-tdd`)
