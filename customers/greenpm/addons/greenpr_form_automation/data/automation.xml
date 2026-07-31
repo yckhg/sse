@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+            base.automation 규칙: greenpr 웹사이트 /contactus 폼으로 crm.lead가
+            생성될 때마다 mail_template_lead_inquiry 템플릿을 그린프 담당자에게
+            자동 발송한다.
+
+            website_crm.website_form_input_filter 가 웹폼 유입 lead에 대해
+            medium_id 를 utm.utm_medium_website (name='Website') 로 고정
+            설정하므로, 이 필드로 "웹사이트 유입" lead만 필터링한다.
+            (PRD 원문은 source_id.name='Website' 이지만 Odoo 19 EE 웹폼은
+            source_id 대신 medium_id를 세팅한다 — 실제 동작과 일치시키기 위해
+            medium_id 기준으로 작성.)
+        -->
+        <record id="automation_lead_inquiry_email" model="base.automation">
+            <field name="name">Greenpr: Website Lead 견적 문의 자동 메일</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="trigger">on_create</field>
+            <field name="filter_domain">[('medium_id.name','=','Website')]</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!--
+            base.automation 이 실행할 server action:
+            state='mail_post' + template_id + mail_post_method='email' 이면
+            SMTP로 실제 메일이 발송된다 (단순 chatter 메시지 X).
+            base_automation_id 로 위 automation 규칙에 묶인다.
+        -->
+        <record id="automation_lead_inquiry_email_action" model="ir.actions.server">
+            <field name="name">Send Greenpr 견적 문의 Email</field>
+            <field name="base_automation_id" ref="automation_lead_inquiry_email"/>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="state">mail_post</field>
+            <field name="template_id" ref="mail_template_lead_inquiry"/>
+            <field name="mail_post_method">email</field>
+            <field name="usage">base_automation</field>
+        </record>
+
+    </data>
+</odoo>

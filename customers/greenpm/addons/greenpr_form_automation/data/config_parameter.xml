@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+            mail_template_lead_inquiry 의 수신자 이메일을 ir.config_parameter 로 분리.
+            테넌트/운영자 전환 시 소스 수정 없이 Settings > Technical > System Parameters
+            에서 값만 바꾸면 된다.
+            noupdate="1" 이므로 모듈 upgrade 시 기존 값을 덮어쓰지 않는다.
+        -->
+        <record id="ir_config_inquiry_recipient" model="ir.config_parameter">
+            <field name="key">greenpr_form_automation.inquiry_recipient</field>
+            <field name="value">greenpm34@gmail.com</field>
+        </record>
+
+    </data>
+</odoo>
